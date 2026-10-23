@@ -1,0 +1,1698 @@
+<!doctype html>
+<!-- StroboScope v3.4 -->
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="version" content="3.4"><title>StroboScope v3.4 – Stroboskopbilder aus Videos</title><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22lgg%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%235b6cff%22/%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23b28cff%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2218%22%20fill%3D%22url%28%23lgg%29%22/%3E%3Ccircle%20cx%3D%2240.93%22%20cy%3D%2219.25%22%20r%3D%221.8%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.3%22/%3E%3Ccircle%20cx%3D%2237.95%22%20cy%3D%2215.09%22%20r%3D%221.95%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.34%22/%3E%3Ccircle%20cx%3D%2233.24%22%20cy%3D%2213.08%22%20r%3D%222.1%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.39%22/%3E%3Ccircle%20cx%3D%2228.17%22%20cy%3D%2213.8%22%20r%3D%222.25%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.43%22/%3E%3Ccircle%20cx%3D%2224.22%22%20cy%3D%2217.05%22%20r%3D%222.4%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.47%22/%3E%3Ccircle%20cx%3D%2222.52%22%20cy%3D%2221.88%22%20r%3D%222.55%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.52%22/%3E%3Ccircle%20cx%3D%2223.57%22%20cy%3D%2226.89%22%20r%3D%222.7%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.56%22/%3E%3Ccircle%20cx%3D%2227.07%22%20cy%3D%2230.62%22%20r%3D%222.85%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.61%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%223%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.65%22/%3E%3Ccircle%20cx%3D%2236.93%22%20cy%3D%2233.38%22%20r%3D%223.15%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.69%22/%3E%3Ccircle%20cx%3D%2240.43%22%20cy%3D%2237.11%22%20r%3D%223.3%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.74%22/%3E%3Ccircle%20cx%3D%2241.48%22%20cy%3D%2242.12%22%20r%3D%223.45%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.78%22/%3E%3Ccircle%20cx%3D%2239.78%22%20cy%3D%2246.95%22%20r%3D%223.6%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.82%22/%3E%3Ccircle%20cx%3D%2235.83%22%20cy%3D%2250.2%22%20r%3D%223.75%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.87%22/%3E%3Ccircle%20cx%3D%2230.76%22%20cy%3D%2250.92%22%20r%3D%223.9%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.91%22/%3E%3Ccircle%20cx%3D%2226.05%22%20cy%3D%2248.91%22%20r%3D%224.05%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.96%22/%3E%3Ccircle%20cx%3D%2223.07%22%20cy%3D%2244.75%22%20r%3D%224.2%22%20fill%3D%22%23ffffff%22%20opacity%3D%221%22/%3E%3C/svg%3E">
+<style>/* StroboScope 3.0 — Layout: Bühne links, Pult rechts. Optik: helle Blaupause (Millimeterpapier), Signalorange als Auslöser. */
+:root {
+  color-scheme: light;
+  --paper: #eef4fb;
+  --grid-minor: #e1ebf7;
+  --grid-major: #d2e1f3;
+  --sheet: #ffffff;
+  --ink: #0f2547;
+  --ink-2: #46597c;
+  --ink-3: #6f82a4;
+  --rule: #cddaeb;
+  --rule-2: #aebfd8;
+  --blue: #2447f5;
+  --blue-soft: #e4eaff;
+  --signal: #ff6a3d;
+  --signal-deep: #d4491d;
+  --signal-soft: #ffe7de;
+  --ok: #12a36b;
+  --bad: #c8321a;
+  --display: Bahnschrift, "DIN Alternate", "Avenir Next Condensed", "Arial Narrow", "Segoe UI", system-ui, sans-serif;
+  --body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, Menlo, monospace;
+}
+* { box-sizing: border-box }
+html { background: var(--paper) }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 14px;
+  line-height: 1.45;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size: 96px 96px, 96px 96px, 16px 16px, 16px 16px;
+}
+button, input, summary { font: inherit; color: inherit }
+button { cursor: pointer; border: 0; background: none; padding: 0 }
+button:disabled { cursor: not-allowed }
+button, a, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation }
+a { color: inherit; text-decoration: none }
+[hidden] { display: none !important }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px }
+.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0 }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden }
+
+/* ---------- Kopf ---------- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+  display: flex; align-items: center; gap: 18px;
+  height: 64px; padding: 0 max(16px, 3.4vw);
+  background: #ffffffec; border-bottom: 2px solid var(--ink);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px)
+}
+.brand { display: flex; align-items: center; gap: 11px }
+.logo { width: 40px; height: 40px; display: block }
+.brand-name { font-family: var(--display); font-size: 27px; font-weight: 700; letter-spacing: .2px; line-height: 1 }
+.brand-name b { color: var(--blue); font-weight: 700 }
+.ver { font-family: var(--mono); font-size: 11px; font-weight: 700; padding: 2px 7px; border: 1.5px solid var(--ink); border-radius: 4px; background: var(--sheet) }
+.tagline { margin: 0 auto; font-family: var(--display); font-size: 17px; letter-spacing: .3px; color: var(--ink-2); display: none }
+.tagline b { color: var(--signal-deep); font-weight: 700 }
+.top .push { margin-left: auto }
+.key {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 40px; padding: 0 14px;
+  font-weight: 600; font-size: 13px; letter-spacing: .1px;
+  background: var(--sheet); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 3px 0 var(--ink);
+  transition: transform .08s, box-shadow .08s, background .15s
+}
+.key:hover:not(:disabled) { background: var(--blue-soft) }
+.key:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 0 0 var(--ink) }
+.key:disabled { color: var(--ink-3); border-color: var(--rule-2); box-shadow: 0 3px 0 var(--rule-2); background: #f6f9fd }
+.key.round { width: 40px; padding: 0; border-radius: 50% }
+
+/* ---------- Gesamtlayout ---------- */
+.layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 356px; gap: 22px; align-items: start;
+  max-width: 1480px; margin: 0 auto; padding: 22px max(16px, 3.4vw) 48px
+}
+.note-nojs { grid-column: 1 / -1; margin: 0; padding: 14px 16px; border: 2px solid var(--ink); background: #fff3c4; border-radius: 8px; font-size: 14px }
+
+/* ---------- Bühne ---------- */
+.stage { min-width: 0; background: var(--sheet); border: 2px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 #0f254726; overflow: hidden }
+.stage-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px 16px; padding: 12px 14px; border-bottom: 2px solid var(--ink); background: #f5f9fe }
+.view-switch { display: inline-flex; border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; background: var(--sheet) }
+.view-switch button { min-height: 38px; padding: 0 15px; font-weight: 600; font-size: 13px; color: var(--ink); border-right: 2px solid var(--ink) }
+.view-switch button:last-child { border-right: 0 }
+.view-switch button:hover { background: var(--blue-soft) }
+.view-switch button[aria-checked="true"] { background: var(--ink); color: #fff }
+.view-switch button:focus-visible { outline-offset: -4px }
+.tools { display: flex; align-items: center; gap: 10px; flex-wrap: wrap }
+
+.views { position: relative; display: flex; flex-direction: column; gap: 16px; padding: 16px; background: #f8fbff }
+.box { position: relative; margin: 0; min-width: 0; background: var(--sheet); border: 1.5px solid var(--rule-2); border-radius: 8px; overflow: hidden }
+.box-title { display: flex; align-items: center; gap: 8px; padding: 7px 12px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); background: #eaf1fb; border-bottom: 1.5px solid var(--rule-2) }
+.box-title i { margin-left: auto; font-style: normal; font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--ink-2) }
+.box-body { position: relative; background: #0f2547 }
+.shot { background: #e8f0fa }
+
+#player { display: block; width: 100%; max-height: 320px; background: #000 }
+.stage[data-view="video"] #player { max-height: 520px }
+.video-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; min-height: 220px; padding: 20px; text-align: center; color: #c7d4ea; background: #0f2547 }
+.video-empty .ic { width: 38px; height: 38px; stroke-width: 1.3; color: #8fa5cc }
+.video-empty p { margin: 6px 0 0; font-size: 14px; color: #fff }
+.video-empty span { font-size: 12px }
+
+/* Zeitbereich unter dem Video */
+.trim { padding: 12px 14px 14px; background: #f5f9fe; border-top: 1.5px solid var(--rule-2) }
+.trim-track { position: relative; height: 44px; margin: 0 10px; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none }
+.trim-ruler { position: absolute; left: 0; right: 0; top: 8px; height: 22px; border: 1.5px solid var(--ink); border-radius: 4px; background: var(--sheet) repeating-linear-gradient(90deg, transparent 0 9px, var(--rule-2) 9px 10px) }
+.trim-fill { position: absolute; top: 8px; height: 22px; background: #ff6a3d55; border: 1.5px solid var(--signal-deep); border-radius: 3px; pointer-events: none }
+.trim-flag { position: absolute; top: 26px; width: 22px; height: 18px; margin-left: -11px; background: var(--blue); clip-path: polygon(50% 0, 100% 100%, 0 100%); cursor: ew-resize }
+.trim-flag:focus-visible { outline: none; background: var(--ink) }
+.trim-read { display: flex; justify-content: space-between; gap: 8px; margin: 6px 10px 0; font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums }
+.trim-read b { color: var(--signal-deep) }
+.trim-help { margin: 8px 10px 0; font-size: 12px; color: var(--ink-2); line-height: 1.55 }
+
+/* Ergebnisfläche */
+.demo { position: relative; display: flex; flex-direction: column; background: #f4f8fd }
+.demo-bar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 14px 0 }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; font-family: var(--mono); font-size: 11px; font-weight: 700; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--sheet) }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--signal) }
+.demo-dt { font-family: var(--mono); font-size: 12px; color: var(--blue); font-weight: 700 }
+.demo svg { display: block; width: 100%; height: auto; max-height: 340px }
+.demo-foot { display: flex; justify-content: space-between; gap: 8px; padding: 0 14px 12px; font-size: 12px; color: var(--ink-2) }
+.demo-foot span:last-child { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--ink-3) }
+.canvas-box { display: flex; justify-content: center; align-items: center; background: #e8f0fa; padding: 0 }
+#out { display: block; max-width: 100%; max-height: 520px; width: auto; height: auto }
+.stage[data-view="image"] #out { max-height: 640px }
+
+.busy { position: absolute; inset: 0; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 20px; text-align: center; background: #f8fbffef; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px) }
+.spinner { width: 38px; height: 38px; border: 4px solid var(--rule); border-top-color: var(--signal); border-radius: 50%; animation: spin 0.9s linear infinite }
+.busy h3 { margin: 8px 0 0; font-family: var(--display); font-size: 22px }
+.busy p { margin: 0; color: var(--ink-2) }
+.busy progress { width: min(320px, 70%); height: 12px; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet); appearance: none; -webkit-appearance: none; overflow: hidden }
+.busy progress::-webkit-progress-bar { background: var(--sheet) }
+.busy progress::-webkit-progress-value { background: var(--signal) }
+.busy progress::-moz-progress-bar { background: var(--signal) }
+.busy output { font-family: var(--mono); font-size: 12px; color: var(--ink-2) }
+@keyframes spin { to { transform: rotate(360deg) } }
+
+.status { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-top: 2px solid var(--ink); background: #f5f9fe; font-family: var(--mono); font-size: 12px; color: var(--ink-2) }
+.status i { width: 10px; height: 10px; border-radius: 50%; background: var(--rule-2); border: 1.5px solid var(--ink); flex-shrink: 0 }
+.status i.on { background: var(--ok) }
+
+/* Filmstreifen */
+.film { padding: 16px; border-top: 2px solid var(--ink) }
+.film-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px }
+.film-head h2 { margin: 0; font-family: var(--display); font-size: 18px }
+.film-head span { font-family: var(--mono); font-size: 11px; letter-spacing: .5px; color: var(--ink-3) }
+.reel { position: relative; padding: 22px 0; background: var(--ink); border-radius: 6px }
+.reel::before, .reel::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; background: linear-gradient(90deg, #eef4fb 0 11px, transparent 11px) 6px 0 / 22px 8px repeat-x; opacity: .9 }
+.reel::before { top: 7px }
+.reel::after { bottom: 7px }
+.reel-empty { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding: 0 14px }
+.reel-empty > div { height: 56px; border: 1.5px dashed #5c739c; border-radius: 3px; display: grid; place-items: center; color: #8fa5cc; font-family: var(--mono); font-size: 11px }
+.reel-note { margin: 0; padding: 10px 14px 0; font-size: 12px; color: #c7d4ea; grid-column: 1 / -1 }
+.reel-strip { display: flex; gap: 10px; padding: 0 14px 2px; overflow-x: auto; scrollbar-width: thin; scrollbar-color: #5c739c transparent }
+.frame { flex: 0 0 112px; width: 112px; text-align: left; color: #dce6f6 }
+.frame img { display: block; width: 100%; height: 68px; object-fit: contain; background: #000; border: 2px solid transparent; border-radius: 2px }
+.frame span { display: flex; justify-content: space-between; gap: 6px; margin-top: 5px; font-family: var(--mono); font-size: 11px; font-variant-numeric: tabular-nums }
+.frame small { color: #8fa5cc; font-size: 10px }
+.frame:hover img { border-color: #fff }
+.frame.picked img { border-color: var(--signal) }
+
+/* ---------- Pult ---------- */
+.panel { display: flex; flex-direction: column; background: var(--sheet); border: 2px solid var(--ink); border-radius: 12px; box-shadow: 6px 6px 0 #0f254726; min-width: 0 }
+.sec { padding: 16px 16px 18px; border-bottom: 2px solid var(--ink) }
+.sec:last-of-type { border-bottom: 0 }
+.sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px }
+.sec-letter { display: grid; place-items: center; width: 26px; height: 26px; font-family: var(--mono); font-size: 13px; font-weight: 800; color: #fff; background: var(--ink); border-radius: 4px }
+.sec-head h2 { margin: 0; font-family: var(--display); font-size: 20px; letter-spacing: .3px }
+.sec-head .key { margin-left: auto; min-height: 30px; width: 30px; padding: 0; box-shadow: 0 2px 0 var(--ink) }
+.sec-head .key .ic { width: 15px; height: 15px }
+
+.drop { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; width: 100%; min-height: 130px; padding: 14px; text-align: center; border: 2px dashed var(--ink); border-radius: 8px; background: #f5f9fe; transition: background .15s }
+.drop:hover, .drop.over { background: var(--signal-soft); border-color: var(--signal-deep) }
+.drop .ic { width: 30px; height: 30px; color: var(--signal-deep) }
+.drop strong { font-family: var(--display); font-size: 18px }
+.drop span { font-size: 12px; color: var(--ink-2) }
+.drop u { color: var(--blue); text-underline-offset: 3px }
+.drop small { font-family: var(--mono); font-size: 10px; color: var(--ink-3) }
+.file { display: flex; align-items: center; gap: 10px; padding: 12px; border: 2px solid var(--ink); border-radius: 8px; background: #f5f9fe }
+.file > .ic { width: 28px; height: 28px; color: var(--blue) }
+.file div { min-width: 0; flex: 1 }
+.file strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px }
+.file span { display: block; margin-top: 3px; font-family: var(--mono); font-size: 11px; color: var(--ink-2) }
+.file .key { min-height: 32px; width: 32px; padding: 0; box-shadow: 0 2px 0 var(--ink) }
+.file .key .ic { width: 15px; height: 15px }
+
+.hz-row { display: flex; align-items: stretch }
+.hz-row .key { min-height: 52px; width: 48px; padding: 0; font-size: 22px; box-shadow: none; border-radius: 8px 0 0 8px; border-right-width: 1px }
+.hz-row .key:last-of-type { border-radius: 0 8px 8px 0; border-right-width: 2px; border-left-width: 1px }
+.hz-row .key:active:not(:disabled) { transform: none; background: var(--signal-soft) }
+.hz-field { flex: 1; display: flex; align-items: baseline; justify-content: center; gap: 6px; min-width: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); background: var(--sheet); padding: 0 6px }
+.hz-field input { width: 100%; min-width: 0; padding: 0; border: 0; outline: 0; background: none; text-align: right; font-family: var(--display); font-size: 32px; font-weight: 700; align-self: center; -moz-appearance: textfield }
+.hz-field input::-webkit-outer-spin-button, .hz-field input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0 }
+.hz-field span { font-family: var(--mono); font-size: 13px; color: var(--ink-2); align-self: center; min-width: 22px }
+.hz-field:focus-within { background: var(--signal-soft) }
+.presets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px }
+.presets button { min-height: 40px; font-family: var(--mono); font-size: 13px; font-weight: 700; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet) }
+.presets button:hover { background: var(--blue-soft) }
+.presets button[aria-pressed="true"] { background: var(--ink); color: #fff }
+.dt { display: flex; align-items: center; justify-content: space-between; margin: 12px 0 0; padding: 8px 10px; border: 1.5px solid var(--rule-2); border-radius: 6px; font-size: 12px; color: var(--ink-2); background: #f5f9fe }
+.dt b { font-family: var(--mono); font-size: 14px; color: var(--ink) }
+
+.drawer { margin-bottom: 16px; border: 2px solid var(--ink); border-radius: 8px; background: #f5f9fe }
+.drawer summary { display: flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 12px; cursor: pointer; list-style: none; font-weight: 600; border-radius: 6px }
+.drawer summary::-webkit-details-marker { display: none }
+.drawer summary .ic { width: 16px; height: 16px }
+.drawer summary output { margin-left: auto; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--signal-deep); white-space: nowrap }
+.drawer summary .chev { transition: transform .2s }
+.drawer[open] summary .chev { transform: rotate(180deg) }
+.drawer[open] summary { border-bottom: 2px solid var(--ink); border-radius: 6px 6px 0 0 }
+.drawer-body { padding: 12px }
+.range-fields { display: grid; grid-template-columns: 1fr auto 1fr; align-items: end; gap: 8px }
+.range-fields label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 600; min-width: 0 }
+.range-fields input { width: 100%; min-width: 0; min-height: 42px; padding: 0 10px; font-family: var(--mono); font-size: 15px; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet) }
+.range-fields > span { padding-bottom: 10px; color: var(--ink-3) }
+.fine { margin: 10px 0 0; font-size: 12px; line-height: 1.55; color: var(--ink-2) }
+
+.sense-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-bottom: 6px; font-weight: 600 }
+.sense-head output { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--blue) }
+input[type=range] { width: 100%; height: 30px; accent-color: var(--signal-deep) }
+.ticks { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: -2px }
+.switches { display: flex; flex-direction: column; gap: 4px; margin-top: 14px }
+.sw { display: flex; align-items: center; gap: 12px; min-height: 42px; cursor: pointer; font-size: 13px; font-weight: 600 }
+.sw input { position: absolute; opacity: 0; width: 1px; height: 1px }
+.sw .track { position: relative; width: 46px; height: 26px; flex-shrink: 0; border: 2px solid var(--ink); border-radius: 13px; background: var(--sheet); transition: background .15s }
+.sw .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--ink); transition: transform .15s }
+.sw input:checked + .track { background: var(--signal) }
+.sw input:checked + .track::after { transform: translateX(20px) }
+.sw input:focus-visible + .track { outline: 3px solid var(--blue); outline-offset: 2px }
+
+.go { position: sticky; bottom: 0; z-index: 5; padding: 14px 16px 16px; background: var(--sheet); border-top: 2px solid var(--ink); border-radius: 0 0 10px 10px }
+.shutter {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 58px; padding: 0 14px 0 10px;
+  font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: .2px; text-align: left;
+  color: var(--ink); background: var(--signal); border: 2px solid var(--ink); border-radius: 10px; box-shadow: 0 4px 0 var(--ink);
+  transition: transform .08s, box-shadow .08s
+}
+.shutter:hover:not(:disabled) { background: #ff7d55 }
+.shutter:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 0 0 var(--ink) }
+.shutter:disabled { color: var(--ink-3); background: #e6edf7; border-color: var(--rule-2); box-shadow: 0 4px 0 var(--rule-2) }
+.shutter .lens { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--sheet); border: 2px solid currentColor; flex-shrink: 0 }
+.shutter .lens .ic { width: 22px; height: 22px }
+.shutter .arrow { margin-left: auto }
+.go-hint { margin: 12px 0 0; font-size: 12px; line-height: 1.5; text-align: center; color: var(--ink-2) }
+.err { margin: 10px 0 0; padding: 9px 11px; font-size: 13px; line-height: 1.5; color: var(--bad); background: #fff0ec; border: 2px solid var(--bad); border-radius: 6px; overflow-wrap: anywhere }
+.link { display: block; margin: 8px auto 0; padding: 8px 10px; font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: underline; text-underline-offset: 3px }
+
+/* ---------- Dialoge ---------- */
+dialog { padding: 22px; color: var(--ink); background: var(--sheet); border: 2px solid var(--ink); border-radius: 12px; max-height: 92vh; box-shadow: 8px 8px 0 #0f254733 }
+dialog::backdrop { background: #0f254799 }
+.dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+.dlg-head h2 { margin: 0; font-family: var(--display); font-size: 24px }
+.eyebrow { margin: 0; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; color: var(--signal-deep) }
+.dlg-help { width: calc(100% - 28px); max-width: 580px }
+.dlg-help h2.big { margin: 14px 0 18px; font-size: 30px; line-height: 1.15 }
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px }
+.steps li { display: flex; gap: 14px }
+.steps .sec-letter { width: 30px; height: 30px; font-size: 14px }
+.steps h3 { margin: 2px 0 4px; font-size: 15px }
+.steps p { margin: 0; line-height: 1.6; color: var(--ink-2) }
+.physics { display: flex; gap: 12px; margin-top: 16px; padding: 14px; border: 2px solid var(--ink); border-radius: 8px; background: var(--blue-soft) }
+.physics .ic { color: var(--blue); width: 22px; height: 22px }
+.physics p { margin: 4px 0 0; font-size: 13px; line-height: 1.7 }
+.help-small { margin: 14px 0; font-size: 12px; line-height: 1.7; color: var(--ink-2) }
+.dlg-help .shutter { justify-content: center }
+
+.dlg-measure { width: calc(100% - 24px); max-width: 920px }
+.dlg-measure > p { margin: 10px 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-2) }
+.m-canvas { margin-top: 14px; max-height: 48vh; overflow: auto; background: #e8f0fa; border: 2px solid var(--ink); border-radius: 8px }
+#mCanvas { display: block; max-width: 100%; max-height: 47vh; margin: auto; object-fit: contain; cursor: crosshair; touch-action: none }
+.m-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 14px 0; padding-bottom: 14px; border-bottom: 1.5px solid var(--rule-2) }
+.m-line small { display: block; margin-bottom: 4px; font-family: var(--mono); font-size: 11px; color: var(--ink-3) }
+.m-line strong { font-family: var(--mono); font-size: 18px; color: var(--signal-deep); overflow-wrap: anywhere }
+.m-actions { display: flex; flex-wrap: wrap; gap: 8px }
+.m-actions .key { min-height: 36px; font-size: 12px; box-shadow: 0 2px 0 var(--ink) }
+.m-list { margin: 0 0 14px; padding: 0; list-style: none; max-height: 168px; overflow: auto; display: grid; gap: 6px }
+.m-list li { display: flex; align-items: center; gap: 8px }
+.m-list input[type=text] { flex: 1; min-width: 0; width: 100%; min-height: 38px; padding: 0 10px; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet) }
+.m-pick { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 10px; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet); font-family: var(--mono); font-size: 12px; font-weight: 700; white-space: nowrap }
+.m-pick[aria-pressed="true"] { background: var(--signal-soft); border-color: var(--signal-deep) }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); border: 1.5px solid var(--ink); flex-shrink: 0 }
+.m-list li[data-off="true"] input[type=text], .m-list li[data-off="true"] .m-pick { opacity: .5 }
+.m-icon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 6px; color: var(--ink-2) }
+.m-icon:hover { background: var(--blue-soft); color: var(--ink) }
+.m-icon .ic { width: 17px; height: 17px }
+.m-style { margin: 0 0 14px; padding: 12px; border: 1.5px solid var(--rule-2); border-radius: 8px; background: #f5f9fe }
+.m-style h3 { margin: 0 0 10px; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; color: var(--ink-2) }
+.m-style .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin-bottom: 10px }
+.m-style .row:last-child { margin-bottom: 0 }
+.m-style label { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600 }
+.m-style input[type=color] { width: 44px; height: 32px; padding: 2px; border: 2px solid var(--ink); border-radius: 6px; background: var(--sheet); cursor: pointer }
+.m-style input[type=range] { width: 150px }
+.m-style output { min-width: 28px; font-family: var(--mono); font-size: 12px; color: var(--signal-deep); font-weight: 700 }
+.m-style input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--signal-deep) }
+.m-style input:disabled, .m-style button:disabled { opacity: .4 }
+.m-scale { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px }
+.m-scale label { display: flex; flex: 1; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; min-width: 240px }
+.m-scale input { width: 120px; min-height: 40px; padding: 0 10px; font-family: var(--mono); border: 2px solid var(--ink); border-radius: 6px }
+.toast { position: fixed; left: 50%; bottom: 28px; z-index: 60; max-width: calc(100% - 32px); transform: translateX(-50%); padding: 12px 20px; font-size: 14px; font-weight: 600; color: #fff; background: var(--ink); border-radius: 8px; box-shadow: 4px 4px 0 var(--signal) }
+
+.stage.is-full { overflow: auto; border-radius: 0; background: var(--paper) }
+.stage.is-full #out { max-height: calc(100vh - 140px) }
+
+/* ---------- Schmale Bildschirme ---------- */
+@media (min-width: 1001px) {
+  .tagline { display: block }
+  .panel { position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; scrollbar-width: thin }
+}
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: minmax(0, 1fr); padding-bottom: 120px }
+  .panel { order: -1 }
+  .go { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px max(16px, 3.4vw) calc(12px + env(safe-area-inset-bottom, 0px)); border-radius: 0; box-shadow: 0 -4px 0 #0f254722 }
+  .go-hint { margin-top: 8px }
+  .go .link { margin-top: 4px }
+  .toast { bottom: 150px }
+  .panel .sec:nth-of-type(n) { border-bottom-width: 2px }
+}
+@media (min-width: 641px) and (max-width: 1000px) {
+  .panel { display: grid; grid-template-columns: 1fr 1fr }
+  .panel .sec:first-child { grid-column: 1 / -1 }
+  .panel .sec:nth-child(2) { border-right: 2px solid var(--ink) }
+  .panel .go { grid-column: 1 / -1 }
+}
+@media (max-width: 640px) {
+  .top { gap: 10px; height: 58px }
+  .brand-name { font-size: 23px }
+  .logo { width: 34px; height: 34px }
+  .view-switch button { padding: 0 11px }
+  .key span.lbl { display: none }
+  .reel-empty { grid-template-columns: repeat(3, 1fr) }
+  .reel-empty > div:nth-child(n+4) { display: none }
+  .views { padding: 10px }
+  .m-scale label { min-width: 100% }
+  .m-list li { flex-wrap: wrap }
+  .m-list input[type=text] { flex-basis: 100% }
+  .m-pick { flex: 1 }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important }
+}
+
+/* ===== Stil „Himmel & Glas“ (v3.1) ===== */
+:root {
+  --paper: #dcebff; --sheet: #ffffff; --ink: #1c2a52; --ink-2: #4c6094; --ink-3: #7f93bd;
+  --rule: #d3e1f9; --rule-2: #bcd0f2; --blue: #5b6cff; --blue-soft: #eaeeff;
+  --signal: #6f6bff; --signal-deep: #4f4fe6; --signal-soft: #ecebff;
+  --grad: linear-gradient(135deg, #5b6cff, #b28cff);
+  --glass: #ffffffb3; --glass-bd: 1px solid #ffffffd9; --soft: 0 12px 36px #5b6cff26;
+  --display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+html { background: #dcebff }
+body {
+  background-color: #dcebff; background-attachment: fixed;
+  background-image: radial-gradient(circle at 12% 8%, #ffe3f3 0, transparent 38%), radial-gradient(circle at 92% 22%, #d4f4ff 0, transparent 42%), radial-gradient(circle at 60% 95%, #e6dcff 0, transparent 45%);
+  background-size: auto
+}
+:focus-visible { outline-color: var(--signal-deep) }
+.top { background: #ffffff99; border-bottom: var(--glass-bd); box-shadow: 0 6px 26px #5b6cff1a }
+.brand-name { font-size: 24px; font-weight: 700; letter-spacing: -.2px }
+.brand-name b { color: var(--signal-deep) }
+.ver { border: 1px solid var(--rule-2); border-radius: 10px; background: #ffffffb3; color: var(--ink-2); font-weight: 600 }
+.tagline b { color: var(--signal-deep) }
+.key { border: var(--glass-bd); border-radius: 999px; background: #ffffffc4; box-shadow: 0 2px 10px #5b6cff2b; transition: transform .1s, box-shadow .1s, background .15s }
+.key:hover:not(:disabled) { background: #fff; box-shadow: 0 4px 14px #5b6cff40 }
+.key:active:not(:disabled) { transform: scale(.96); box-shadow: 0 1px 4px #5b6cff33 }
+.key:disabled { color: var(--ink-3); border-color: #ffffff80; box-shadow: none; background: #ffffff66 }
+.note-nojs { border: var(--glass-bd); border-radius: 16px }
+
+.stage, .panel { background: var(--glass); border: var(--glass-bd); border-radius: 26px; box-shadow: var(--soft); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px) }
+.stage-bar { background: transparent; border-bottom: 1px solid #ffffffa6 }
+.view-switch { gap: 4px; padding: 4px; border: var(--glass-bd); border-radius: 18px; background: #ffffff99 }
+.view-switch button { min-height: 34px; border: 0; border-radius: 13px; color: var(--ink-2) }
+.view-switch button:hover { background: #ffffffc0 }
+.view-switch button[aria-checked="true"] { background: #fff; color: var(--signal-deep); box-shadow: 0 3px 12px #5b6cff33 }
+.views { background: transparent }
+.box { background: #ffffffbf; border: var(--glass-bd); border-radius: 20px; box-shadow: 0 6px 22px #5b6cff1c }
+.box-title { gap: 10px; background: transparent; border-bottom: 1px solid var(--rule); font-family: var(--body); font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-2) }
+.box-body { background: #141d3f }
+.mini { margin-left: 6px; padding: 3px 12px; font-size: 12px; font-weight: 600; color: var(--signal-deep); background: var(--signal-soft); border: 1px solid #d6d4ff; border-radius: 999px }
+.mini:hover { background: #e1dfff }
+.box-title i + .mini { margin-left: 8px }
+
+.trim { background: transparent; border-top: 1px solid var(--rule) }
+.trim-ruler { top: 14px; height: 10px; border: 0; border-radius: 6px; background: #d9e4fa }
+.trim-fill { top: 14px; height: 10px; border: 0; border-radius: 6px; background: var(--grad) }
+.trim-flag { top: 28px; background: var(--ink); filter: drop-shadow(0 2px 3px #1c2a5240) }
+.trim-flag:focus-visible { background: var(--signal-deep) }
+.trim-read b { color: var(--signal-deep) }
+.demo { background: #f2f6ff }
+.chip { border: 1px solid var(--rule-2) }
+.demo-dt { color: var(--signal-deep) }
+.canvas-box { background: #e9f0ff }
+.busy { background: #eef3ffeb }
+.busy progress { border: 0; border-radius: 8px; background: #d9e4fa }
+.busy progress::-webkit-progress-bar { background: #d9e4fa }
+.busy progress::-webkit-progress-value { background: var(--grad) }
+.busy progress::-moz-progress-bar { background: var(--grad) }
+.status { background: transparent; border-top: 1px solid #ffffffa6 }
+.status i { border: 0; background: var(--rule-2) }
+.film { border-top: 1px solid #ffffffa6 }
+.film-head h2 { font-weight: 700 }
+.reel { background: #1c2a52; border-radius: 16px }
+
+.sec { border-bottom: 1px solid #ffffffa6 }
+.sec-letter { border-radius: 50%; background: var(--grad); font-family: var(--body) }
+.sec-head h2 { font-weight: 700; letter-spacing: 0 }
+.sec-head .key, .file .key { box-shadow: 0 2px 8px #5b6cff2b }
+.drop { border: 2px dashed var(--rule-2); border-radius: 20px; background: #ffffff80 }
+.drop:hover, .drop.over { background: var(--signal-soft); border-color: var(--signal-deep) }
+.drop .ic { color: var(--signal-deep) }
+.drop u { color: var(--signal-deep) }
+.file { border: var(--glass-bd); border-radius: 18px; background: #ffffffb3 }
+.file > .ic { color: var(--signal-deep) }
+.hz-row { gap: 8px }
+.hz-row .key, .hz-row .key:last-of-type { border-width: 1px; border-radius: 16px; box-shadow: 0 2px 10px #5b6cff2b }
+.hz-field { border: var(--glass-bd); border-radius: 16px; background: #ffffffc4 }
+.hz-field span { color: var(--ink-2) }
+.hz-field:focus-within { background: #fff; box-shadow: 0 0 0 3px #5b6cff40 }
+.presets button { border: 1px solid var(--rule-2); border-radius: 14px; background: #ffffffb3; color: var(--ink-2) }
+.presets button:hover { background: #fff }
+.presets button[aria-pressed="true"] { background: var(--grad); color: #fff; border-color: transparent; box-shadow: 0 6px 16px #5b6cff4d }
+.dt { border: 1px solid var(--rule); border-radius: 14px; background: #ffffff80 }
+.drawer { border: var(--glass-bd); border-radius: 18px; background: #ffffffa6 }
+.drawer[open] summary { border-bottom: 1px solid var(--rule) }
+.drawer summary output { color: var(--signal-deep) }
+.range-fields input, .crop-fields input, .m-list input[type=text], .m-scale input { border: 1px solid var(--rule-2); border-radius: 12px; background: #fff }
+.crop-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.crop-fields label { display: flex; flex-direction: column; gap: 5px; font-size: 12px; font-weight: 600; min-width: 0 }
+.crop-fields input { width: 100%; min-width: 0; min-height: 42px; padding: 0 10px; font-family: var(--mono); font-size: 15px }
+.crop-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px }
+.crop-actions .key { min-height: 36px; font-size: 12px }
+.sense-head output { color: var(--signal-deep) }
+.sw .track { border: 0; background: var(--rule-2) }
+.sw .track::after { background: #fff; box-shadow: 0 1px 4px #1c2a5240 }
+.sw input:checked + .track { background: var(--grad) }
+.go { background: #f6f8ff; border-top: 1px solid #ffffffa6; border-radius: 0 0 24px 24px }
+.shutter { color: #fff; background: var(--grad); border: 0; border-radius: 18px; box-shadow: 0 10px 24px #5b6cff59; transition: transform .1s, box-shadow .1s, filter .15s }
+.shutter:hover:not(:disabled) { background: var(--grad); filter: brightness(1.07) }
+.shutter:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 4px 10px #5b6cff59 }
+.shutter:disabled { color: var(--ink-3); background: #e3eafa; box-shadow: none }
+.shutter .lens { background: #ffffff30; border: 2px solid #fff }
+.err { border: 1px solid #f0b4a8; border-radius: 12px }
+.link { color: var(--signal-deep) }
+
+dialog { background: #f8faff; border: var(--glass-bd); border-radius: 26px; box-shadow: 0 24px 70px #1c2a5240 }
+dialog::backdrop { background: #1c2a5266; backdrop-filter: blur(4px) }
+.eyebrow { color: var(--signal-deep) }
+.physics { border: 1px solid var(--rule-2); border-radius: 16px }
+.physics .ic { color: var(--signal-deep) }
+.m-canvas { border: 1px solid var(--rule-2); border-radius: 16px }
+.m-line { border-bottom: 1px solid var(--rule) }
+.m-line strong { color: var(--signal-deep) }
+.m-pick { border: 1px solid var(--rule-2); border-radius: 12px }
+.m-pick[aria-pressed="true"] { background: var(--signal-soft); border-color: var(--signal-deep) }
+.dot { border: 1px solid #fff; box-shadow: 0 0 0 1px var(--rule-2) }
+.m-style { border: 1px solid var(--rule); border-radius: 16px; background: #fff }
+.m-style input[type=color] { border: 1px solid var(--rule-2); border-radius: 10px }
+.m-style output { color: var(--signal-deep) }
+.m-style input[type=checkbox], input[type=range] { accent-color: var(--signal-deep) }
+.toast { background: var(--ink); border-radius: 16px; box-shadow: 0 10px 28px #1c2a5255 }
+.stage.is-full { background: #e8f0ff }
+
+/* Ausschnitt-Rahmen im Video */
+.crop-layer { position: absolute; z-index: 2; overflow: hidden; pointer-events: none }
+.crop-rect { position: absolute; border: 2px solid #fff; border-radius: 2px; cursor: move; pointer-events: auto; touch-action: none; box-shadow: 0 0 0 9999px #0d1638a6, inset 0 0 0 1px var(--signal-deep) }
+.crop-tag { position: absolute; left: 6px; top: 6px; padding: 1px 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; color: #fff; background: var(--signal-deep); border-radius: 8px; pointer-events: none; white-space: nowrap }
+.crop-rect i { position: absolute; width: 26px; height: 26px; margin: -13px 0 0 -13px; touch-action: none }
+.crop-rect i::before { content: ""; position: absolute; inset: 7px; background: #fff; border: 2px solid var(--signal-deep); border-radius: 5px }
+.crop-rect i[data-h="nw"] { left: 0; top: 0; cursor: nwse-resize }
+.crop-rect i[data-h="n"] { left: 50%; top: 0; cursor: ns-resize }
+.crop-rect i[data-h="ne"] { left: 100%; top: 0; cursor: nesw-resize }
+.crop-rect i[data-h="e"] { left: 100%; top: 50%; cursor: ew-resize }
+.crop-rect i[data-h="se"] { left: 100%; top: 100%; cursor: nwse-resize }
+.crop-rect i[data-h="s"] { left: 50%; top: 100%; cursor: ns-resize }
+.crop-rect i[data-h="sw"] { left: 0; top: 100%; cursor: nesw-resize }
+.crop-rect i[data-h="w"] { left: 0; top: 50% ; cursor: ew-resize }
+
+@media (max-width: 1000px) {
+  .go { box-shadow: 0 -8px 30px #5b6cff26; border-radius: 0 }
+  .panel .sec:nth-child(2) { border-right: 1px solid #ffffffa6 }
+}
+.fps { margin-left: 4px; padding: 3px 10px; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--signal-deep); background: var(--signal-soft); border: 1px solid #d6d4ff; border-radius: 999px; white-space: nowrap }
+.sec-head .fps + .key { margin-left: auto }
+.m-style select { min-height: 34px; padding: 0 8px; border: 1px solid var(--rule-2); border-radius: 10px; background: #fff; font: inherit; font-weight: 500 }
+.m-style input[type=color]#mBg { width: 44px }
+.mode-switch { display: flex; gap: 4px; padding: 4px; margin-bottom: 12px; border: var(--glass-bd); border-radius: 16px; background: #ffffff99 }
+.mode-switch button { flex: 1; min-height: 34px; padding: 0 10px; font-size: 13px; font-weight: 600; color: var(--ink-2); border-radius: 12px }
+.mode-switch button:hover { background: #ffffffc0 }
+.mode-switch button[aria-checked="true"] { background: #fff; color: var(--signal-deep); box-shadow: 0 3px 12px #5b6cff33 }
+.trace-head { margin: 16px 0 6px; font-weight: 600 }
+.mode-switch + .fine { margin-top: -4px; margin-bottom: 14px }
+#stepBox .fine { margin-top: 10px }
+</style></head><body>
+<svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 64 64"><defs><linearGradient id="lgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#b28cff"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="url(#lgg)"/><circle cx="40.93" cy="19.25" r="1.8" fill="#ffffff" opacity="0.3"/><circle cx="37.95" cy="15.09" r="1.95" fill="#ffffff" opacity="0.34"/><circle cx="33.24" cy="13.08" r="2.1" fill="#ffffff" opacity="0.39"/><circle cx="28.17" cy="13.8" r="2.25" fill="#ffffff" opacity="0.43"/><circle cx="24.22" cy="17.05" r="2.4" fill="#ffffff" opacity="0.47"/><circle cx="22.52" cy="21.88" r="2.55" fill="#ffffff" opacity="0.52"/><circle cx="23.57" cy="26.89" r="2.7" fill="#ffffff" opacity="0.56"/><circle cx="27.07" cy="30.62" r="2.85" fill="#ffffff" opacity="0.61"/><circle cx="32" cy="32" r="3" fill="#ffffff" opacity="0.65"/><circle cx="36.93" cy="33.38" r="3.15" fill="#ffffff" opacity="0.69"/><circle cx="40.43" cy="37.11" r="3.3" fill="#ffffff" opacity="0.74"/><circle cx="41.48" cy="42.12" r="3.45" fill="#ffffff" opacity="0.78"/><circle cx="39.78" cy="46.95" r="3.6" fill="#ffffff" opacity="0.82"/><circle cx="35.83" cy="50.2" r="3.75" fill="#ffffff" opacity="0.87"/><circle cx="30.76" cy="50.92" r="3.9" fill="#ffffff" opacity="0.91"/><circle cx="26.05" cy="48.91" r="4.05" fill="#ffffff" opacity="0.96"/><circle cx="23.07" cy="44.75" r="4.2" fill="#ffffff" opacity="1"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><path d="M9.5 9a2.5 2.5 0 0 1 5 .5c0 2-2.5 2-2.5 4M12 17.5h.01"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-crop" viewBox="0 0 24 24"><path d="M6 2v14a2 2 0 0 0 2 2h14M2 6h14a2 2 0 0 1 2 2v14"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+    <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 16 13-13 5 5L8 21l-5-5Zm6-6 2 2m2-6 2 2m-9 6 2 2"/></symbol>
+    <symbol id="i-full" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-shutter" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 3 3.5 6M20.4 9H13.5M18.5 18l-3.5-6M5.5 18l3.5-6M3.6 9h7M8.5 3 12 9"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="m3 3 18 18M10.6 5.1 12 5c6.5 0 10 7 10 7a19 19 0 0 1-3.1 4M6.1 6.1A20 20 0 0 0 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.2M10 10a3 3 0 0 0 4 4"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v6l-6 10a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10"/></symbol>
+  </defs>
+</svg>
+
+<header class="top" id="top">
+  <a class="brand" href="#top" aria-label="StroboScope"><svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><use href="#logo"/></svg><span class="brand-name">Strobo<b>Scope</b></span><span class="ver">v3.4</span></a>
+  <p class="tagline">Ein Video. <b>Viele Momente.</b></p>
+  <button class="key round push" id="helpBtn" type="button" aria-label="Hilfe"><svg class="ic"><use href="#i-help"/></svg></button>
+</header>
+
+<main class="layout">
+  <p class="note-nojs" id="noJs">StroboScope braucht einen Browser mit JavaScript. Auf dem iPad bitte die Webadresse in Safari öffnen. Die Vorschau einer HTML-Datei reicht nicht.</p>
+
+  <section class="stage" id="stage" data-view="both" aria-label="Vorschau">
+    <div class="stage-bar">
+      <div class="view-switch" id="viewSwitch" role="radiogroup" aria-label="Ansicht">
+        <button type="button" role="radio" data-view="both" aria-checked="true" tabindex="0" title="Video und Stroboskopbild gleichzeitig">Beides</button>
+        <button type="button" role="radio" data-view="video" aria-checked="false" tabindex="-1" title="Nur das Originalvideo">Video</button>
+        <button type="button" role="radio" data-view="image" aria-checked="false" tabindex="-1" title="Nur das Stroboskopbild">Stroboskopbild</button>
+      </div>
+      <div class="tools">
+        <button class="key" id="measureBtn" type="button" disabled title="Strecken im Bild messen"><svg class="ic"><use href="#i-ruler"/></svg><span class="lbl">Messen</span></button>
+        <button class="key" id="fullBtn" type="button" title="Vorschau vergrößern"><svg class="ic"><use href="#i-full"/></svg><span class="lbl">Vollbild</span></button>
+        <button class="key" id="saveBtn" type="button" disabled title="Stroboskopbild als PNG speichern"><svg class="ic"><use href="#i-save"/></svg><span class="lbl">PNG speichern</span></button>
+      </div>
+    </div>
+
+    <div class="views">
+      <figure class="box" id="videoBox">
+        <figcaption class="box-title">Originalvideo<i id="videoInfo"></i><button class="mini" id="cropQuick" type="button" hidden>Ausschnitt wählen</button></figcaption>
+        <div class="box-body">
+          <video id="player" controls playsinline preload="auto"></video>
+          <div class="crop-layer" id="cropLayer" hidden>
+            <div class="crop-rect" id="cropRect"><span class="crop-tag" id="cropTag"></span>
+              <i data-h="nw"></i><i data-h="n"></i><i data-h="ne"></i><i data-h="e"></i><i data-h="se"></i><i data-h="s"></i><i data-h="sw"></i><i data-h="w"></i>
+            </div>
+          </div>
+          <div class="video-empty" id="videoEmpty"><svg class="ic"><use href="#i-film"/></svg><p>Dein Video erscheint hier.</p><span>Wähle rechts eine Datei aus.</span></div>
+        </div>
+        <div class="trim" id="trim" hidden>
+          <div class="trim-track" id="trimTrack">
+            <div class="trim-ruler"></div>
+            <div class="trim-fill" id="trimFill"></div>
+            <div class="trim-flag" id="flagA" role="slider" tabindex="0" aria-label="Beginn des Analysebereichs"></div>
+            <div class="trim-flag" id="flagB" role="slider" tabindex="0" aria-label="Ende des Analysebereichs"></div>
+          </div>
+          <div class="trim-read"><span id="readA"></span><b id="readLen"></b><span id="readB"></span></div>
+          <p class="trim-help">Ziehe die Dreiecke, um den Analysebereich festzulegen. Das Video zeigt dabei die Stelle und läuft danach nur zwischen ihnen ab. Die Werte stimmen mit „Von“ und „Bis“ im Fach „Zeitbereich“ überein.</p>
+        </div>
+      </figure>
+
+      <figure class="box" id="imageBox">
+        <figcaption class="box-title">Stroboskopbild<i id="imageInfo"></i></figcaption>
+        <div class="demo" id="demo">
+          <div class="demo-bar"><span class="chip"><i></i>Schiefe Ebene</span><span class="demo-dt">Δt = 0,10 s</span></div>
+          <svg class="fall-illustration" viewBox="0 0 740 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustration einer Kugel auf einer schiefen Ebene mit zunehmenden Abständen"><defs><radialGradient id="bs-ebene" cx="32%" cy="25%" r="80%"><stop offset="0" stop-color="#cfd4ff"/><stop offset=".5" stop-color="#6f6bff"/><stop offset="1" stop-color="#4640c7"/></radialGradient><filter id="sh-ebene" x="-80%" y="-80%" width="260%" height="260%"><feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#6f6bff" flood-opacity=".28"/></filter></defs><polygon points="60,95 690,335 60,335" fill="#e6eeff" stroke="#bcd0f2"/><line x1="60" y1="95" x2="690" y2="335" stroke="#bcd0f2" stroke-width="3" stroke-linecap="round"/><line x1="88" y1="105.7" x2="84.8" y2="114.1" stroke="#bcd0f2"/><line x1="135.9" y1="123.9" x2="132.7" y2="132.3" stroke="#bcd0f2"/><line x1="183.7" y1="142.1" x2="180.5" y2="150.5" stroke="#bcd0f2"/><line x1="231.5" y1="160.3" x2="228.3" y2="168.8" stroke="#bcd0f2"/><line x1="279.3" y1="178.6" x2="276.1" y2="187" stroke="#bcd0f2"/><line x1="327.2" y1="196.8" x2="324" y2="205.2" stroke="#bcd0f2"/><line x1="375" y1="215" x2="371.8" y2="223.4" stroke="#bcd0f2"/><line x1="422.8" y1="233.2" x2="419.6" y2="241.6" stroke="#bcd0f2"/><line x1="470.7" y1="251.4" x2="467.5" y2="259.9" stroke="#bcd0f2"/><line x1="518.5" y1="269.7" x2="515.3" y2="278.1" stroke="#bcd0f2"/><line x1="566.3" y1="287.9" x2="563.1" y2="296.3" stroke="#bcd0f2"/><line x1="614.1" y1="306.1" x2="610.9" y2="314.5" stroke="#bcd0f2"/><line x1="662" y1="324.3" x2="658.8" y2="332.7" stroke="#bcd0f2"/><circle cx="108.5" cy="94.2" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.4"/><text x="121.6" y="63.6" fill="#4c6094" font-family="Arial,sans-serif" font-size="11" text-anchor="middle">t = 0,0 s</text><circle cx="148" cy="109.3" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.5"/><circle cx="206.3" cy="131.5" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.6"/><text x="219.4" y="100.9" fill="#4c6094" font-family="Arial,sans-serif" font-size="11" text-anchor="middle">t = 0,2 s</text><circle cx="283.2" cy="160.8" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.7"/><circle cx="378.9" cy="197.2" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.8"/><text x="392.1" y="166.6" fill="#4c6094" font-family="Arial,sans-serif" font-size="11" text-anchor="middle">t = 0,4 s</text><circle cx="493.3" cy="240.8" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="0.9"/><circle cx="626.3" cy="291.5" r="15" fill="url(#bs-ebene)" filter="url(#sh-ebene)" opacity="1"/><text x="639.5" y="260.9" fill="#4c6094" font-family="Arial,sans-serif" font-size="11" text-anchor="middle">t = 0,6 s</text><g transform="translate(420 40)"><rect width="190" height="76" rx="9" fill="#ffffff" stroke="#bcd0f2"/><text x="16" y="31" fill="#1c2a52" font-family="Arial,sans-serif" font-size="12">Gleiche Zeitabstände.</text><text x="16" y="52" fill="#1c2a52" font-family="Arial,sans-serif" font-size="12">Immer größere Strecken.</text></g></svg>
+          <div class="demo-foot"><span>So wird Beschleunigung sichtbar.</span><span>ILLUSTRATION</span></div>
+        </div>
+        <div class="canvas-box shot" id="canvasBox" hidden><canvas id="out" aria-label="Dein erstelltes Stroboskopbild"></canvas></div>
+      </figure>
+
+      <div class="busy" id="busy" hidden>
+        <span class="spinner"></span>
+        <h3>Bewegung wird sichtbar …</h3>
+        <p id="busyText">Hintergrund wird ermittelt.</p>
+        <progress id="busyBar" max="100" value="0"></progress>
+        <output id="busyPct">0 %</output>
+      </div>
+    </div>
+
+    <div class="status" role="status"><i id="statusDot"></i><span id="statusText">Dein nächstes Experiment beginnt hier.</span></div>
+
+    <section class="film" aria-label="Einzelbilder">
+      <div class="film-head"><h2>Die Bewegung, Bild für Bild</h2><span id="filmCount">GLEICHE ZEITABSTÄNDE</span></div>
+      <div class="reel">
+        <div id="reelEmpty">
+          <div class="reel-empty"><div>01</div><div>02</div><div>03</div><div>04</div><div>05</div></div>
+          <p class="reel-note">Deine Einzelbilder erscheinen nach dem Erstellen hier.</p>
+        </div>
+        <div class="reel-strip" id="reelStrip" hidden></div>
+      </div>
+    </section>
+  </section>
+
+  <aside class="panel" id="panel" aria-label="Einstellungen">
+    <section class="sec">
+      <div class="sec-head"><span class="sec-letter">A</span><h2>Video</h2></div>
+      <input id="fileInput" type="file" accept="video/*,.mp4,.mov,.webm,.m4v" hidden>
+      <button class="drop" id="dropZone" type="button"><svg class="ic"><use href="#i-up"/></svg><strong>Video hier ablegen</strong><span>oder <u>Datei auswählen</u></span><small>MP4 · MOV · WebM</small></button>
+      <div class="file" id="fileCard" hidden><svg class="ic"><use href="#i-film"/></svg><div><strong id="fileName"></strong><span id="fileMeta"></span></div><button class="key" id="removeBtn" type="button" aria-label="Video entfernen"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><span class="sec-letter">B</span><h2>Frequenz</h2><span class="fps" id="fpsBadge" hidden title="So viele Bilder pro Sekunde hat das Video"></span><button class="key" id="hzHelp" type="button" aria-label="Was bedeutet Frequenz?"><svg class="ic"><use href="#i-help"/></svg></button></div>
+      <div class="mode-switch" id="modeSwitch" role="radiogroup" aria-label="Zeitabstand festlegen über">
+        <button type="button" role="radio" data-mode="hz" aria-checked="false" tabindex="-1">Frequenz</button>
+        <button type="button" role="radio" data-mode="step" aria-checked="true" tabindex="0">Schrittweite</button>
+      </div>
+      <div id="hzBox" hidden>
+      <div class="hz-row">
+        <button class="key" id="hzMinus" type="button" aria-label="Frequenz verringern">−</button>
+        <div class="hz-field"><input id="hz" type="number" min="0.1" max="120" step="0.1" value="30" inputmode="decimal" aria-label="Bilder pro Sekunde"><span>Hz</span></div>
+        <button class="key" id="hzPlus" type="button" aria-label="Frequenz erhöhen">+</button>
+      </div>
+      <div class="presets" role="group" aria-label="Frequenz wählen"><button type="button" data-hz="5">5</button><button type="button" data-hz="10">10</button><button type="button" data-hz="15">15</button><button type="button" data-hz="30" aria-pressed="true">30</button></div>
+      </div>
+      <div id="stepBox">
+        <div class="hz-row">
+          <button class="key" id="stepMinus" type="button" aria-label="Schrittweite verringern">−</button>
+          <div class="hz-field"><input id="stepN" type="number" min="1" max="1000" step="1" value="1" inputmode="numeric" aria-label="Schrittweite in Videobildern"><span>Bild</span></div>
+          <button class="key" id="stepPlus" type="button" aria-label="Schrittweite erhöhen">+</button>
+        </div>
+        <div class="presets" role="group" aria-label="Schrittweite wählen"><button type="button" data-step="1" aria-pressed="true">1</button><button type="button" data-step="2">2</button><button type="button" data-step="3">3</button><button type="button" data-step="5">5</button></div>
+        <p class="fine" id="stepInfo">Schrittweite 1 verwendet jedes Videobild, 2 jedes zweite und so weiter.</p>
+      </div>
+      <p class="dt"><span>Ein Bild alle</span><b id="dt">0,10 s</b></p>
+    </section>
+
+    <section class="sec">
+      <div class="sec-head"><span class="sec-letter">C</span><h2>Analyse</h2></div>
+      <details class="drawer" id="drawer">
+        <summary><svg class="ic"><use href="#i-clock"/></svg>Zeitbereich<output id="rangeSummary">Gesamtes Video</output><svg class="ic chev"><use href="#i-chev"/></svg></summary>
+        <div class="drawer-body">
+          <div class="range-fields">
+            <label for="tFrom">Von (s)<input id="tFrom" type="number" min="0" step="0.01" value="0"></label>
+            <span>–</span>
+            <label for="tTo">Bis (s)<input id="tTo" type="number" min="0" step="0.01" placeholder="Ende"></label>
+          </div>
+          <p class="fine">Den Zeitbereich kannst du auch direkt im Originalvideo einstellen, indem du die Dreiecke unter der Zeitleiste verschiebst. Beide Angaben sind synchron.</p>
+        </div>
+      </details>
+      <details class="drawer" id="cropDrawer">
+        <summary><svg class="ic"><use href="#i-crop"/></svg>Ausschnitt<output id="cropSummary">Ganzes Bild</output><svg class="ic chev"><use href="#i-chev"/></svg></summary>
+        <div class="drawer-body">
+          <div class="crop-fields">
+            <label for="cX">Links (px)<input id="cX" type="number" min="0" step="1" inputmode="numeric"></label>
+            <label for="cY">Oben (px)<input id="cY" type="number" min="0" step="1" inputmode="numeric"></label>
+            <label for="cW">Breite (px)<input id="cW" type="number" min="16" step="1" inputmode="numeric"></label>
+            <label for="cH">Höhe (px)<input id="cH" type="number" min="16" step="1" inputmode="numeric"></label>
+          </div>
+          <div class="crop-actions"><button class="key" id="cropSet" type="button">Rahmen im Video zeigen</button><button class="key" id="cropReset" type="button">Ganzes Bild</button></div>
+          <p class="fine">Nur dieser Bereich wird zum Stroboskopbild. Den Rahmen kannst du auch im Originalvideo mit Maus oder Finger an den Ecken und Seiten ziehen oder verschieben.</p>
+        </div>
+      </details>
+      <div class="trace-head"><span>Spuren</span></div>
+      <div class="mode-switch" id="traceSwitch" role="radiogroup" aria-label="Welche Spuren sollen sichtbar werden">
+        <button type="button" role="radio" data-trace="all" aria-checked="true" tabindex="0" title="Jede Abweichung vom Hintergrund">Alle</button>
+        <button type="button" role="radio" data-trace="bright" aria-checked="false" tabindex="-1" title="Helle Objekte auf dunklerem Grund">Hell</button>
+        <button type="button" role="radio" data-trace="dark" aria-checked="false" tabindex="-1" title="Dunkle Objekte auf hellerem Grund">Dunkel</button>
+      </div>
+      <p class="fine" id="traceInfo">Alle: jede Abweichung vom Hintergrund. Hell: helle Objekte auf dunklem Grund. Dunkel: dunkle Objekte auf hellem Grund.</p>
+      <div class="sense-head"><label for="sense">Bewegungserkennung</label><output id="senseText">Normal</output></div>
+      <input id="sense" type="range" min="8" max="65" value="22">
+      <div class="ticks"><span>fein</span><span>ruhig</span></div>
+      <p class="fine">Links: feine Bewegungen. Rechts: weniger Bildrauschen.</p>
+      <div class="switches">
+        <label class="sw"><input id="optTimeline" type="checkbox" checked><span class="track"></span>Zeitleiste im Bild</label>
+        <label class="sw"><input id="optGrid" type="checkbox"><span class="track"></span>Hilfsraster</label>
+      </div>
+    </section>
+
+    <div class="go">
+      <button class="shutter" id="go" type="button" disabled><span class="lens"><svg class="ic"><use href="#i-shutter"/></svg></span><span id="goLabel">Stroboskopbild erstellen</span><svg class="ic arrow"><use href="#i-arrow"/></svg></button>
+      <p class="go-hint" id="goHint">Wähle ein Video, um loszulegen.</p>
+      <p class="err" id="err" role="alert" hidden></p>
+      <button class="link" id="stop" type="button" hidden>Verarbeitung abbrechen</button>
+    </div>
+  </aside>
+</main>
+
+<dialog id="helpDlg" class="dlg-help">
+  <div class="dlg-head"><p class="eyebrow">DEIN KLEINES PHYSIKLABOR</p><button class="key round" type="button" data-close aria-label="Hilfe schließen"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <h2 class="big" style="font-family:var(--display)">Bewegung verstehen.<br>In drei einfachen Schritten.</h2>
+  <ol class="steps">
+    <li><span class="sec-letter">A</span><div><h3>Video auswählen</h3><p>Filme zum Beispiel einen fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li>
+    <li><span class="sec-letter">B</span><div><h3>Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt der Bewegung aus.</p></div></li>
+    <li><span class="sec-letter">C</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Speichere das Ergebnis als PNG oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li>
+  </ol>
+  <div class="physics"><svg class="ic"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div>
+  <p class="help-small">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p>
+  <button class="shutter" type="button" data-close>Los geht’s<svg class="ic"><use href="#i-arrow"/></svg></button>
+</dialog>
+
+<dialog id="measureDlg" class="dlg-measure">
+  <div class="dlg-head"><h2>Strecken messen</h2><button class="key round" type="button" data-close aria-label="Messwerkzeug schließen"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <p>Klicke je Strecke auf Anfang und Ende. Den Namen kannst du direkt in der Liste ändern. Über das Auge blendest du Strecken aus und ein. Klicke auf den Messwert, um eine Strecke als Maßstab auszuwählen. Eine Beschriftung ziehst du mit der Maus oder dem Finger an die gewünschte Stelle.</p>
+  <div class="m-canvas"><canvas id="mCanvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken" tabindex="0"></canvas></div>
+  <div class="m-line">
+    <div><small>AUSGEWÄHLTE STRECKE</small><strong id="mValue" role="status">Zwei Punkte auswählen</strong></div>
+    <div class="m-actions"><button class="key" id="mNew" type="button">Neue Strecke</button><button class="key" id="mClear" type="button" disabled>Alle löschen</button></div>
+  </div>
+  <ul class="m-list" id="mList" aria-label="Gemessene Strecken" hidden></ul>
+  <div class="m-style">
+    <h3>STIL DER AUSGEWÄHLTEN STRECKE</h3>
+    <div class="row">
+      <label>Farbe<input id="mColor" type="color" value="#d45132" disabled></label>
+      <label>Liniendicke<input id="mWidth" type="range" min="1" max="10" step="0.5" value="2" disabled><output id="mWidthVal">2</output></label>
+    </div>
+    <div class="row">
+      <label><input id="mShowLabel" type="checkbox" checked disabled>Beschriftung anzeigen</label>
+      <label>Schriftart<select id="mFont" disabled>
+        <option value="sans">Standard</option><option value="serif">Serif</option><option value="mono">Monospace</option>
+        <option value="script">Schreibschrift</option><option value="narrow">Schmal</option><option value="rounded">Rund</option>
+      </select></label>
+      <label>Hintergrund<input id="mBg" type="color" value="#ffffff" disabled></label>
+      <label>Deckkraft<input id="mBgAlpha" type="range" min="0" max="100" step="5" value="95" disabled><output id="mBgAlphaVal">95 %</output></label>
+      <button class="key" id="mResetLabel" type="button" disabled style="min-height:34px;font-size:12px;box-shadow:0 2px 0 var(--ink)">Beschriftung zurücksetzen</button>
+    </div>
+  </div>
+  <div class="m-scale">
+    <label for="mKnown">Ausgewählte Referenzstrecke entspricht<input id="mKnown" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label>
+    <button class="key" id="mCalibrate" type="button" disabled>Als Maßstab verwenden</button>
+  </div>
+  <p class="fine" id="mNote">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.</p>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>(() => {
+'use strict';
+
+/* StroboScope — Programmcode. Reihenfolge: Hilfsfunktionen, Zustand, Video laden, Zeitbereich,
+   Bildberechnung, Ergebnisdarstellung, Messen, Oberfläche, Ereignisse. */
+
+const VERSION = '3.4';
+const MIN_CROP = 16;
+const FONTS = {
+  sans: 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
+  serif: 'Georgia, "Times New Roman", serif',
+  mono: 'ui-monospace, "SF Mono", Consolas, Menlo, monospace',
+  script: '"Segoe Script", "Bradley Hand", "Comic Sans MS", "Brush Script MT", cursive',
+  narrow: '"Arial Narrow", "Avenir Next Condensed", "Roboto Condensed", Bahnschrift, sans-serif',
+  rounded: '"Arial Rounded MT Bold", "Varela Round", "Trebuchet MS", system-ui, sans-serif',
+};
+const hexRgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+const LIMITS = { frames: 300, side: 1280, thumb: 176 };
+const TRIM_MIN = 0.1;
+
+/* ---------- Hilfsfunktionen ---------- */
+const $ = (id) => document.getElementById(id);
+const nf = (n, d = 2) => n.toLocaleString('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d });
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const pause = () => new Promise((r) => setTimeout(r, 0));
+const pictures = (n) => `${n} ${n === 1 ? 'Bild' : 'Bilder'}`;
+const fit = (w, h, limit) => {
+  const k = Math.min(1, limit / Math.max(w, h));
+  return { w: Math.max(1, Math.round(w * k)), h: Math.max(1, Math.round(h * k)) };
+};
+const hslHex = (h, s, l) => {
+  s /= 100; l /= 100;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n) => { const k = (n + h / 30) % 12; return l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); };
+  return '#' + [f(0), f(8), f(4)].map((x) => Math.round(x * 255).toString(16).padStart(2, '0')).join('');
+};
+const aborted = () => new DOMException('Abgebrochen', 'AbortError');
+
+let toastTimer = 0;
+function toast(text) {
+  const t = $('toast');
+  t.textContent = text; t.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.hidden = true; }, 4500);
+}
+function showError(text = '') { $('err').textContent = text; $('err').hidden = !text; }
+
+/* ---------- Zustand ---------- */
+const S = {
+  url: null, name: '', duration: 0, vw: 0, vh: 0,
+  mode: 'step', trace: 'all', fps: 0,
+  loading: false, busy: false, job: null, loadJob: null, loadToken: 0,
+  result: null,
+  view: 'both',
+  a: 0, b: 0, crop: null,
+  measures: [], pending: [], picked: null, nextId: 1, scale: null, scaleRef: null,
+};
+
+/* ---------- Medien lesen ---------- */
+function whenReady(video, signal) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => end(new Error('Das Video konnte nicht rechtzeitig geladen werden. Versuche ein anderes Video.')), 20000);
+    const end = (err) => {
+      clearTimeout(timer);
+      video.removeEventListener('loadeddata', ok);
+      video.removeEventListener('error', bad);
+      signal && signal.removeEventListener('abort', stop);
+      err ? reject(err) : resolve();
+    };
+    const ok = () => end();
+    const bad = () => end(new Error('Dieses Videoformat kann dein Browser nicht lesen. Verwende ein MP4 mit H.264 oder ein WebM-Video.'));
+    const stop = () => end(aborted());
+    if (signal && signal.aborted) return stop();
+    if (video.readyState >= 2) return ok();
+    video.addEventListener('loadeddata', ok, { once: true });
+    video.addEventListener('error', bad, { once: true });
+    signal && signal.addEventListener('abort', stop, { once: true });
+  });
+}
+function seekTo(video, t, signal) {
+  if (signal && signal.aborted) return Promise.reject(aborted());
+  if (Math.abs(video.currentTime - t) < 1e-5 && video.readyState >= 2) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => end(new Error('Ein Videobild konnte nicht gelesen werden. Versuche ein anderes Video.')), 15000);
+    const end = (err) => {
+      clearTimeout(timer);
+      video.removeEventListener('seeked', ok);
+      video.removeEventListener('error', bad);
+      signal && signal.removeEventListener('abort', stop);
+      err ? reject(err) : resolve();
+    };
+    const ok = () => end();
+    const bad = () => end(new Error('Das Video konnte nicht vollständig gelesen werden.'));
+    const stop = () => end(aborted());
+    video.addEventListener('seeked', ok, { once: true });
+    video.addEventListener('error', bad, { once: true });
+    signal && signal.addEventListener('abort', stop, { once: true });
+    video.currentTime = t;
+  });
+}
+
+/* ---------- Einstellungen und Bildplan ---------- */
+function planFrames(from, to, hz) {
+  if (!Number.isFinite(hz) || hz < 0.1 || hz > 120) throw new Error('Bitte gib eine Frequenz zwischen 0,1 und 120 Hz ein.');
+  if (!Number.isFinite(from) || !Number.isFinite(to) || from < 0 || to <= from) throw new Error('Der Beginn muss vor dem Ende des Zeitbereichs liegen.');
+  const n = Math.ceil((to - from) * hz - 1e-8);
+  if (n > LIMITS.frames) throw new Error(`Dieser Abschnitt ergibt ${n.toLocaleString('de-DE')} Bilder. Wähle einen kürzeren Zeitbereich oder eine niedrigere Frequenz (höchstens ${LIMITS.frames} Bilder).`);
+  return Array.from({ length: Math.max(1, n) }, (_, i) => from + i / hz);
+}
+/** Aufnahmezeitpunkte aus ganzen Videobildern: Schrittweite n = jedes n-te Bild. */
+function planSteps(from, to, n) {
+  if (!S.fps) throw new Error('Die Bildrate dieses Videos ist nicht bekannt. Verwende die Einstellung „Frequenz“.');
+  if (!Number.isInteger(n) || n < 1) throw new Error('Die Schrittweite muss eine ganze Zahl ab 1 sein.');
+  if (!Number.isFinite(from) || !Number.isFinite(to) || from < 0 || to <= from) throw new Error('Der Beginn muss vor dem Ende des Zeitbereichs liegen.');
+  const times = [];
+  for (let i = Math.ceil(from * S.fps - 1e-6); (i + 0.5) / S.fps < to + 1e-9; i += n) {
+    times.push((i + 0.5) / S.fps);   // Bildmitte, damit der Sprung sicher auf diesem Bild landet
+    if (times.length > LIMITS.frames) throw new Error(`Dieser Abschnitt ergibt mehr als ${LIMITS.frames} Bilder. Wähle einen kürzeren Zeitbereich oder eine größere Schrittweite.`);
+  }
+  if (!times.length) throw new Error('In diesem Zeitbereich liegt kein Videobild. Wähle einen längeren Bereich.');
+  return times;
+}
+/** Wirksame Frequenz in Hz, egal ob über Frequenz oder Schrittweite eingestellt. */
+function currentHz() {
+  if (S.mode === 'step') return S.fps && $('stepN').valueAsNumber >= 1 ? S.fps / $('stepN').valueAsNumber : NaN;
+  return $('hz').valueAsNumber;
+}
+function readSettings() {
+  const step = S.mode === 'step';
+  const from = $('tFrom').value === '' ? 0 : $('tFrom').valueAsNumber;
+  const rawTo = $('tTo').value === '' ? S.duration : $('tTo').valueAsNumber;
+  if (rawTo > S.duration + 0.001) throw new Error('Der gewählte Zeitbereich liegt außerhalb des Videos.');
+  const to = Math.min(rawTo, S.duration);
+  const n = $('stepN').valueAsNumber;
+  const times = step ? planSteps(from, to, n) : planFrames(from, to, $('hz').valueAsNumber);
+  const hz = step ? Math.round(S.fps / n * 1000) / 1000 : $('hz').valueAsNumber;
+  return { hz, from, to, times, step: step ? n : 0, trace: S.trace, cutoff: $('sense').valueAsNumber, crop: S.crop ? { ...S.crop } : null };
+}
+
+/* ---------- Bildberechnung ---------- */
+/** Mittelwert aus mehreren Aufnahmen: Was sich bewegt, verschwindet, der ruhige Hintergrund bleibt. */
+function medianInto(out, samples, from, to) {
+  const n = samples.length, mid = n >> 1, buf = new Uint8Array(n);
+  for (let i = from; i < to; i++) {
+    if ((i & 3) === 3) { out[i] = 255; continue; }
+    for (let k = 0; k < n; k++) {
+      const v = samples[k][i];
+      let j = k;
+      while (j > 0 && buf[j - 1] > v) { buf[j] = buf[j - 1]; j--; }
+      buf[j] = v;
+    }
+    out[i] = buf[mid];
+  }
+}
+/** Übernimmt je Pixel das Bild mit der stärksten Abweichung vom Hintergrund. */
+const lum = (d, i) => 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+/** Nur hellere (bright) oder nur dunklere (dark) Pixel als der Hintergrund; je Pixel gewinnt der hellste bzw. dunkelste Wert. */
+function stampTone(out, bg, frame, best, cutoff, dark) {
+  let moved = 0;
+  for (let i = 0, p = 0; i < out.length; i += 4, p++) {
+    const l = lum(frame, i), diff = dark ? lum(bg, i) - l : l - lum(bg, i);
+    if (diff <= cutoff) continue;
+    moved++;
+    if (dark ? l < best[p] : l > best[p]) { best[p] = l; out[i] = frame[i]; out[i + 1] = frame[i + 1]; out[i + 2] = frame[i + 2]; out[i + 3] = 255; }
+  }
+  return moved;
+}
+function stamp(out, bg, frame, best, cutoff, trace = 'all') {
+  if (trace !== 'all') return stampTone(out, bg, frame, best, cutoff, trace === 'dark');
+  const limit = cutoff * cutoff * 3;
+  let moved = 0;
+  for (let i = 0, p = 0; i < out.length; i += 4, p++) {
+    const dr = frame[i] - bg[i], dg = frame[i + 1] - bg[i + 1], db = frame[i + 2] - bg[i + 2];
+    const d = dr * dr + dg * dg + db * db;
+    if (d <= limit) continue;
+    moved++;
+    if (d > best[p]) { best[p] = d; out[i] = frame[i]; out[i + 1] = frame[i + 1]; out[i + 2] = frame[i + 2]; out[i + 3] = 255; }
+  }
+  return moved;
+}
+async function capture({ url, from, to, hz, times, cutoff, crop, trace = 'all', step = 0, signal, onProgress }) {
+  const video = document.createElement('video');
+  video.muted = true; video.playsInline = true; video.preload = 'auto'; video.src = url;
+  try {
+    await whenReady(video, signal);
+    // Nur der gewählte Ausschnitt wird verarbeitet.
+    const vw = video.videoWidth, vh = video.videoHeight;
+    const c = crop ? {
+      x: clamp(Math.round(crop.x), 0, vw - 1), y: clamp(Math.round(crop.y), 0, vh - 1),
+    } : { x: 0, y: 0 };
+    c.w = crop ? clamp(Math.round(crop.w), 1, vw - c.x) : vw;
+    c.h = crop ? clamp(Math.round(crop.h), 1, vh - c.y) : vh;
+    const { w, h } = fit(c.w, c.h, LIMITS.side);
+    const work = document.createElement('canvas'); work.width = w; work.height = h;
+    const ctx = work.getContext('2d', { willReadFrequently: true });
+    if (!ctx) throw new Error('Dein Browser unterstützt die Bildverarbeitung nicht.');
+
+    // 1. Hintergrund aus neun gleichmäßig verteilten Aufnahmen
+    const samples = [];
+    const last = Math.max(from, to - Math.min(0.02, (to - from) / 100));
+    const probes = 9;
+    for (let i = 0; i < probes; i++) {
+      await seekTo(video, from + (last - from) * (i + 0.37) / probes, signal);
+      ctx.drawImage(video, c.x, c.y, c.w, c.h, 0, 0, w, h);
+      samples.push(ctx.getImageData(0, 0, w, h).data);
+      onProgress((i + 1) / probes * 15, 'Ruhiger Hintergrund wird ermittelt.');
+    }
+    const bg = new Uint8ClampedArray(w * h * 4);
+    const band = w * 4 * 40;
+    for (let at = 0; at < bg.length; at += band) {
+      if (signal.aborted) throw aborted();
+      const upto = Math.min(at + band, bg.length);
+      medianInto(bg, samples, at, upto);
+      onProgress(15 + upto / bg.length * 15, 'Hintergrund und Bewegung werden getrennt.');
+      await pause();
+    }
+    samples.length = 0;
+
+    // 2. Bilder nacheinander einsetzen
+    const out = new Uint8ClampedArray(bg);
+    const tone = trace !== 'all';
+    const best = tone ? new Float32Array(w * h) : new Uint32Array(w * h);
+    if (tone) for (let i = 0, p = 0; i < bg.length; i += 4, p++) best[p] = lum(bg, i);
+    const tn = fit(w, h, LIMITS.thumb);
+    const tc = document.createElement('canvas'); tc.width = tn.w; tc.height = tn.h;
+    const tctx = tc.getContext('2d');
+    const thumbs = [];
+    let moving = 0;
+    for (let i = 0; i < times.length; i++) {
+      await seekTo(video, times[i], signal);
+      ctx.drawImage(video, c.x, c.y, c.w, c.h, 0, 0, w, h);
+      moving = Math.max(moving, stamp(out, bg, ctx.getImageData(0, 0, w, h).data, best, cutoff, trace));
+      tctx.drawImage(work, 0, 0, tn.w, tn.h);
+      thumbs.push({ t: times[i], rel: times[i] - from, src: tc.toDataURL('image/jpeg', 0.75) });
+      onProgress(30 + (i + 1) / times.length * 69, `Bild ${i + 1} von ${times.length} wird zusammengeführt.`);
+      await pause();
+    }
+    return { pixels: out, w, h, times, thumbs, hz, start: from, end: to, moving, step, trace, crop: crop ? c : null };
+  } finally {
+    video.pause(); video.removeAttribute('src'); video.load();
+  }
+}
+
+/* ---------- Ergebnis zeichnen ---------- */
+function paintOut() {
+  const r = S.result;
+  if (!r) return;
+  const cv = $('out'), ctx = cv.getContext('2d');
+  const legend = $('optTimeline').checked;
+  const legendH = legend ? Math.round(r.w * 0.065) + 35 : 0;
+  cv.width = r.w; cv.height = r.h + legendH;
+  ctx.putImageData(new ImageData(r.pixels, r.w, r.h), 0, 0);
+  if ($('optGrid').checked) {
+    ctx.save();
+    ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(36,71,245,0.32)'; ctx.fillStyle = 'rgba(20,45,180,0.95)'; ctx.font = '11px sans-serif';
+    for (let x = 50; x < r.w; x += 50) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, r.h); ctx.stroke(); ctx.fillText(`${x}px`, x + 4, 13); }
+    for (let y = 50; y < r.h; y += 50) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(r.w, y); ctx.stroke(); ctx.fillText(`${y}px`, 4, y - 4); }
+    ctx.restore();
+  }
+  if (legend) {
+    const top = r.h, fs = Math.max(10, Math.round(r.w / 80));
+    const t3 = (n) => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+    ctx.fillStyle = '#eef4fb'; ctx.fillRect(0, top, r.w, legendH);
+    ctx.fillStyle = '#0f2547'; ctx.fillRect(0, top, r.w, 3);
+    ctx.fillStyle = '#d4491d'; ctx.font = `700 ${fs}px sans-serif`;
+    ctx.fillText(`StroboScope  ·  ${r.hz.toLocaleString('de-DE')} Hz  ·  Δt = ${t3(1 / r.hz)} s  ·  ${r.times.length} Bilder${r.step > 1 ? `  ·  jedes ${r.step}. Bild` : ''}`, 15, top + fs + 13);
+    ctx.fillStyle = '#46597c'; ctx.font = `${Math.max(8, fs - 1)}px sans-serif`;
+    const picks = r.times.length <= 12 ? r.times.map((_, i) => i) : Array.from({ length: 9 }, (_, i) => Math.round(i * (r.times.length - 1) / 8));
+    const y = top + fs + 31;
+    ctx.fillText('t =', 15, y);
+    const step = (r.w - 60) / picks.length;
+    picks.forEach((idx, i) => ctx.fillText(`${t3(r.times[idx] - r.start)} s`, 45 + i * step, y));
+    if (legendH > 68) ctx.fillText(`Zeitangaben relativ zum Abschnittsbeginn. Videobeginn: ${t3(r.start)} s.`, 15, top + legendH - 12);
+  }
+  drawMeasures(ctx, 'o', false);
+}
+
+/* ---------- Messen ---------- */
+const PALETTE = ['#d45132', '#2563eb', '#15803d', '#9333ea', '#b45309', '#0e7490', '#be185d', '#4f46e5'];
+const colorFor = (id) => PALETTE[id - 1] || hslHex(((id - 1) * 137.508) % 360, 70, 38);
+const valueOf = (m) => (S.scale ? `${nf(m.px * S.scale)} cm` : `${nf(m.px, 1)} px`);
+const pickedMeasure = () => S.measures.find((m) => m.id === S.picked);
+
+function drawMeasures(ctx, key, draft) {
+  const r = S.result, W = r.w, H = r.h;
+  const pinR = Math.max(4, W / 180);
+  const shown = ctx.canvas.getBoundingClientRect().width / W || 1;
+  const fs = Math.max(14, W / 55, 12 / shown);
+  ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const pin = (p, c) => {
+    ctx.beginPath(); ctx.arc(p.x, p.y, pinR, 0, Math.PI * 2);
+    ctx.fillStyle = c; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+  };
+  for (const m of S.measures) {
+    m.boxes = m.boxes || {};
+    m.boxes[key] = null;
+    if (!m.visible) continue;
+    const lw = Math.max(1, m.width * W / 1000);
+    ctx.beginPath(); ctx.moveTo(m.a.x, m.a.y); ctx.lineTo(m.b.x, m.b.y);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = lw + 2; ctx.stroke();
+    ctx.strokeStyle = m.color; ctx.lineWidth = lw; ctx.stroke();
+    pin(m.a, m.color); pin(m.b, m.color);
+    if (!m.showLabel) continue;
+    const text = `${m.name} · ${valueOf(m)}`;
+    ctx.font = `600 ${fs}px ${FONTS[m.font] || FONTS.sans}`; ctx.textBaseline = 'middle';
+    const pad = fs * 0.4;
+    const bw = Math.max(1, Math.min(W - 4, ctx.measureText(text).width + pad * 2));
+    const bh = fs + pad * 2;
+    const nx = -(m.b.y - m.a.y) / m.px, ny = (m.b.x - m.a.x) / m.px;
+    const off = Math.abs(nx) * bw / 2 + Math.abs(ny) * bh / 2 + pinR + 3;
+    const autoX = clamp((m.a.x + m.b.x) / 2 + nx * off - bw / 2, 2, W - bw - 2);
+    const autoY = clamp((m.a.y + m.b.y) / 2 + ny * off - bh / 2, 2, H - bh - 2);
+    const x = m.labelPos ? clamp(m.labelPos.x, 0, W - bw) : autoX;
+    const y = m.labelPos ? clamp(m.labelPos.y, 0, H - bh) : autoY;
+    m.boxes[key] = { x, y, w: bw, h: bh };
+    ctx.fillStyle = hexRgba(m.bg, m.bgAlpha); ctx.fillRect(x, y, bw, bh);
+    ctx.strokeStyle = m.color; ctx.lineWidth = 1.5; ctx.strokeRect(x, y, bw, bh);
+    ctx.fillStyle = m.color; ctx.fillText(text, x + pad, y + bh / 2, Math.max(1, bw - pad * 2));
+  }
+  if (draft) S.pending.forEach((p) => pin(p, colorFor(S.nextId)));
+  ctx.restore();
+}
+
+function drawMeasureCanvas() {
+  const r = S.result;
+  if (!r) return;
+  const cv = $('mCanvas'); cv.width = r.w; cv.height = r.h;
+  const ctx = cv.getContext('2d');
+  ctx.putImageData(new ImageData(r.pixels, r.w, r.h), 0, 0);
+  drawMeasures(ctx, 'm', true);
+}
+
+function renderMeasureUI() {
+  drawMeasureCanvas();
+  const pick = pickedMeasure();
+  $('mValue').textContent = S.pending.length ? 'Jetzt den zweiten Punkt wählen' : pick ? `${pick.name} · ${valueOf(pick)}` : 'Zwei Punkte auswählen';
+  $('mClear').disabled = !S.measures.length && !S.pending.length;
+
+  const list = $('mList');
+  list.replaceChildren(); list.hidden = !S.measures.length;
+  for (const m of S.measures) {
+    const li = document.createElement('li');
+    const name = document.createElement('input');
+    name.type = 'text'; name.maxLength = 40; name.value = m.name;
+    name.setAttribute('aria-label', `Name für Strecke ${m.id}`); name.title = 'Strecke umbenennen';
+    const pick = document.createElement('button');
+    pick.type = 'button'; pick.className = 'm-pick';
+    pick.setAttribute('aria-pressed', String(m.id === S.picked));
+    const dot = document.createElement('span'); dot.className = 'dot'; dot.style.setProperty('--c', m.color);
+    const val = document.createElement('span'); val.textContent = valueOf(m);
+    pick.append(dot, val);
+    const eye = document.createElement('button'); eye.type = 'button'; eye.className = 'm-icon';
+    const del = document.createElement('button'); del.type = 'button'; del.className = 'm-icon';
+    del.innerHTML = '<svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>';
+    const sync = () => {
+      li.dataset.off = String(!m.visible);
+      pick.setAttribute('aria-label', `${m.name} auswählen: ${valueOf(m)}`);
+      const word = `${m.name} ${m.visible ? 'ausblenden' : 'einblenden'}`;
+      eye.setAttribute('aria-label', word); eye.title = word;
+      eye.innerHTML = `<svg class="ic" aria-hidden="true"><use href="#${m.visible ? 'i-eye' : 'i-eye-off'}"/></svg>`;
+      del.setAttribute('aria-label', `${m.name} löschen`); del.title = `${m.name} löschen`;
+    };
+    sync();
+    pick.addEventListener('click', () => { S.pending = []; S.picked = m.id; renderMeasureUI(); });
+    eye.addEventListener('click', () => { m.visible = !m.visible; sync(); drawMeasureCanvas(); paintOut(); });
+    name.addEventListener('input', () => {
+      m.name = name.value.trim() || `Strecke ${m.id}`;
+      sync(); drawMeasureCanvas(); paintOut(); updateScaleNote();
+      if (m.id === S.picked) $('mValue').textContent = `${m.name} · ${valueOf(m)}`;
+    });
+    name.addEventListener('blur', () => { name.value = m.name; });
+    name.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); name.blur(); } });
+    del.addEventListener('click', () => {
+      S.measures = S.measures.filter((x) => x.id !== m.id);
+      if (S.picked === m.id) S.picked = null;
+      renderMeasureUI(); paintOut();
+    });
+    li.append(name, pick, eye, del);
+    list.append(li);
+  }
+
+  const sel = pickedMeasure();
+  document.querySelectorAll('.m-style input, .m-style button, .m-style select').forEach((el) => { el.disabled = !sel; });
+  if (sel) {
+    $('mColor').value = sel.color;
+    $('mWidth').value = sel.width; $('mWidthVal').textContent = nf(sel.width, 1);
+    $('mShowLabel').checked = sel.showLabel;
+    $('mFont').value = sel.font; $('mBg').value = sel.bg;
+    $('mBgAlpha').value = Math.round(sel.bgAlpha * 100); $('mBgAlphaVal').textContent = `${Math.round(sel.bgAlpha * 100)} %`;
+    $('mResetLabel').disabled = !sel.labelPos;
+  }
+  const d = $('mKnown').valueAsNumber;
+  $('mCalibrate').disabled = !sel || !(d > 0) || !Number.isFinite(d);
+  updateScaleNote();
+}
+function updateScaleNote() {
+  if (!S.scale) return;
+  const ref = S.measures.find((m) => m.id === S.scaleRef);
+  $('mNote').textContent = `Maßstab festgelegt: ${ref ? `${ref.name} entspricht ${valueOf(ref)}` : `1 Pixel = ${nf(S.scale, 4)} cm`}. Alle Messungen verwenden diesen Maßstab. Er gilt für dieses Ergebnis.`;
+}
+function resetMeasuring() {
+  S.measures = []; S.pending = []; S.picked = null; S.nextId = 1; S.scale = null; S.scaleRef = null;
+  $('mKnown').value = '';
+  $('mNote').textContent = 'Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.';
+  $('mList').replaceChildren(); $('mList').hidden = true;
+  $('mValue').textContent = 'Zwei Punkte auswählen';
+  $('mClear').disabled = true; $('mCalibrate').disabled = true;
+}
+function placePoint(p) {
+  S.picked = null;
+  S.pending.push(p);
+  if (S.pending.length === 2) {
+    const [a, b] = S.pending;
+    const px = Math.hypot(b.x - a.x, b.y - a.y);
+    if (px > 0) {
+      const id = S.nextId++;
+      S.measures.push({ id, name: `Strecke ${id}`, visible: true, a, b, px, color: colorFor(id), width: 2, showLabel: true, font: 'sans', bg: '#ffffff', bgAlpha: 0.95, labelPos: null, boxes: {} });
+      S.picked = id;
+    } else toast('Wähle zwei unterschiedliche Punkte für eine Strecke.');
+    S.pending = [];
+  }
+  renderMeasureUI(); paintOut();
+}
+
+/* ---------- Zeitbereich (Dreiecke unter dem Video) ---------- */
+const player = $('player'), track = $('trimTrack');
+const snap = (t) => (t >= S.duration - 0.005 ? S.duration : Math.round(t * 100) / 100);
+function drawTrim() {
+  const d = S.duration || 1;
+  $('trimFill').style.left = `${S.a / d * 100}%`;
+  $('trimFill').style.width = `${(S.b - S.a) / d * 100}%`;
+  $('flagA').style.left = `${S.a / d * 100}%`;
+  $('flagB').style.left = `${S.b / d * 100}%`;
+  $('flagA').setAttribute('aria-valuenow', String(S.a));
+  $('flagB').setAttribute('aria-valuenow', String(S.b));
+  $('readA').textContent = `Von ${nf(S.a)} s`;
+  $('readB').textContent = `Bis ${nf(S.b)} s`;
+  $('readLen').textContent = `Länge ${nf(S.b - S.a)} s`;
+}
+function setTrim(a, b, moving) {
+  if (!S.duration) return;
+  let lo = clamp(snap(a), 0, S.duration), hi = clamp(snap(b), 0, S.duration);
+  if (hi - lo < TRIM_MIN) { if (moving === 'a') lo = Math.max(0, hi - TRIM_MIN); else hi = Math.min(S.duration, lo + TRIM_MIN); }
+  S.a = lo; S.b = hi;
+  $('tFrom').value = String(lo); $('tTo').value = String(hi);
+  showError(); drawTrim(); refresh();
+}
+function trimFromFields() {
+  if (!S.duration) return;
+  const lo = $('tFrom').value === '' ? 0 : $('tFrom').valueAsNumber;
+  const hi = $('tTo').value === '' ? S.duration : $('tTo').valueAsNumber;
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) return;
+  S.a = clamp(lo, 0, S.duration); S.b = clamp(hi, 0, S.duration);
+  drawTrim();
+}
+function startTrim() {
+  $('trim').hidden = false;
+  const lo = $('tFrom').value === '' ? 0 : $('tFrom').valueAsNumber;
+  const hi = $('tTo').value === '' ? S.duration : $('tTo').valueAsNumber;
+  setTrim(Number.isFinite(lo) ? lo : 0, Number.isFinite(hi) ? hi : S.duration);
+}
+let dragFlag = null;
+const timeAt = (x) => { const r = track.getBoundingClientRect(); return clamp((x - r.left) / r.width, 0, 1) * S.duration; };
+function moveFlag(t) {
+  if (dragFlag === 'a') setTrim(t, S.b, 'a'); else setTrim(S.a, t, 'b');
+  // Das Video zeigt immer die Stelle, an der das Dreieck gerade steht.
+  player.pause(); player.currentTime = dragFlag === 'a' ? S.a : S.b;
+}
+track.addEventListener('pointerdown', (e) => {
+  if (!S.duration || S.busy) return;
+  const t = timeAt(e.clientX);
+  dragFlag = Math.abs(t - S.a) <= Math.abs(t - S.b) ? 'a' : 'b';
+  $(dragFlag === 'a' ? 'flagA' : 'flagB').focus({ preventScroll: true });
+  track.setPointerCapture(e.pointerId);
+  moveFlag(t);
+  e.preventDefault();
+});
+track.addEventListener('pointermove', (e) => { if (dragFlag) moveFlag(timeAt(e.clientX)); });
+const dropFlag = () => { dragFlag = null; };
+track.addEventListener('pointerup', dropFlag);
+track.addEventListener('pointercancel', dropFlag);
+for (const id of ['flagA', 'flagB']) {
+  $(id).addEventListener('keydown', (e) => {
+    const dir = e.key === 'ArrowLeft' ? -1 : e.key === 'ArrowRight' ? 1 : 0;
+    if (!dir || !S.duration || S.busy) return;
+    e.preventDefault();
+    const step = (e.shiftKey ? 1 : 0.1) * dir;
+    if (id === 'flagA') setTrim(S.a + step, S.b, 'a'); else setTrim(S.a, S.b + step, 'b');
+    player.pause(); player.currentTime = id === 'flagA' ? S.a : S.b;
+  });
+}
+// Beim Abspielen im gewählten Bereich bleiben.
+let guard = 0;
+function keepInside() {
+  if (player.paused || !S.duration) { guard = 0; return; }
+  if (player.currentTime >= S.b || player.currentTime < S.a) player.currentTime = S.a;
+  guard = requestAnimationFrame(keepInside);
+}
+player.addEventListener('play', () => {
+  if (player.currentTime < S.a || player.currentTime >= S.b) player.currentTime = S.a;
+  if (!guard) guard = requestAnimationFrame(keepInside);
+});
+
+/* ---------- Bildrate des Videos ermitteln ---------- */
+async function detectFps(token) {
+  const badge = $('fpsBadge');
+  badge.hidden = true;
+  if (!player.requestVideoFrameCallback) return;
+  const times = [], counts = [];
+  const start = player.currentTime, wasMuted = player.muted;
+  const ok = await new Promise((resolve) => {
+    const stop = setTimeout(() => resolve(times.length > 3), 3500);
+    const tick = (now, meta) => {
+      if (token !== S.loadToken) { clearTimeout(stop); return resolve(false); }
+      times.push(meta.mediaTime); counts.push(meta.presentedFrames);
+      if (times.length >= 31) { clearTimeout(stop); return resolve(true); }
+      player.requestVideoFrameCallback(tick);
+    };
+    player.muted = true;
+    player.requestVideoFrameCallback(tick);
+    player.play().catch(() => { clearTimeout(stop); resolve(false); });
+  });
+  if (token !== S.loadToken) return;
+  player.pause(); player.muted = wasMuted; player.currentTime = start;
+  if (!ok) return;
+  // Ausgelassene Rückrufe ergeben Vielfache des Bildabstands. Darum nur die kleinsten Abstände mitteln.
+  const gaps = times.slice(1).map((t, i) => t - times[i]).filter((x) => x > 0.0005);
+  if (gaps.length < 3) return;
+  const least = Math.min(...gaps);
+  const fine = gaps.filter((x) => x < least * 1.4);
+  const raw = fine.length / fine.reduce((p, q) => p + q, 0);
+  const std = [23.976, 24, 25, 29.97, 30, 48, 50, 59.94, 60, 90, 100, 120, 240];
+  const near = std.reduce((a, b) => Math.abs(b - raw) < Math.abs(a - raw) ? b : a);
+  const fps = Math.abs(near - raw) / near < 0.04 ? near : raw;
+  S.fps = fps; refresh();
+  badge.textContent = `Video: ${nf(fps, Number.isInteger(fps) ? 0 : 2)} fps`;
+  badge.hidden = false;
+}
+
+/* ---------- Ausschnitt (Rahmen im Video) ---------- */
+const cropLayer = $('cropLayer');
+let pic = { w: 1, h: 1 };
+function placeCropLayer() {
+  const box = player.parentElement.getBoundingClientRect(), pr = player.getBoundingClientRect();
+  if (!S.vw || !pr.width) return false;
+  const k = Math.min(pr.width / S.vw, pr.height / S.vh), w = S.vw * k, h = S.vh * k;
+  pic = { w, h };
+  Object.assign(cropLayer.style, { left: `${pr.left - box.left + (pr.width - w) / 2}px`, top: `${pr.top - box.top + (pr.height - h) / 2}px`, width: `${w}px`, height: `${h}px` });
+  return true;
+}
+function drawCrop() {
+  const c = S.crop, show = !!(c && S.duration && !$('videoBox').hidden);
+  cropLayer.hidden = !show;
+  for (const [id, key] of [['cX', 'x'], ['cY', 'y'], ['cW', 'w'], ['cH', 'h']]) {
+    if (document.activeElement !== $(id)) $(id).value = c ? String(c[key]) : '';
+  }
+  $('cropSet').textContent = c ? 'Rahmen im Video zeigen' : 'Rahmen im Video anlegen';
+  if (show && placeCropLayer()) {
+    const s = $('cropRect').style;
+    s.left = `${c.x / S.vw * 100}%`; s.top = `${c.y / S.vh * 100}%`;
+    s.width = `${c.w / S.vw * 100}%`; s.height = `${c.h / S.vh * 100}%`;
+    $('cropTag').textContent = `${c.w} × ${c.h} px`;
+  }
+  refresh();
+}
+function setCrop(c) {
+  if (!c || !S.vw) { S.crop = null; return drawCrop(); }
+  const w = clamp(Math.round(c.w), Math.min(MIN_CROP, S.vw), S.vw), h = clamp(Math.round(c.h), Math.min(MIN_CROP, S.vh), S.vh);
+  S.crop = { x: clamp(Math.round(c.x), 0, S.vw - w), y: clamp(Math.round(c.y), 0, S.vh - h), w, h };
+  if (S.crop.w === S.vw && S.crop.h === S.vh) S.crop = null;   // ganzes Bild = kein Ausschnitt
+  showError(); drawCrop();
+}
+function defaultCrop() { return { x: S.vw * 0.2, y: S.vh * 0.2, w: S.vw * 0.6, h: S.vh * 0.6 }; }
+let cdrag = null;
+cropLayer.addEventListener('pointerdown', (e) => {
+  const t = e.target.closest('[data-h], #cropRect');
+  if (!t || S.busy || !S.crop) return;
+  cdrag = { h: t.dataset.h || 'move', sx: e.clientX, sy: e.clientY, c: { ...S.crop } };
+  t.setPointerCapture(e.pointerId); e.preventDefault();
+});
+cropLayer.addEventListener('pointermove', (e) => {
+  if (!cdrag) return;
+  const dx = (e.clientX - cdrag.sx) / pic.w * S.vw, dy = (e.clientY - cdrag.sy) / pic.h * S.vh, { c, h } = cdrag;
+  if (h === 'move') return setCrop({ ...c, x: clamp(c.x + dx, 0, S.vw - c.w), y: clamp(c.y + dy, 0, S.vh - c.h) });
+  let x1 = c.x, y1 = c.y, x2 = c.x + c.w, y2 = c.y + c.h;
+  if (h.includes('w')) x1 = clamp(c.x + dx, 0, x2 - MIN_CROP);
+  if (h.includes('e')) x2 = clamp(x2 + dx, x1 + MIN_CROP, S.vw);
+  if (h.includes('n')) y1 = clamp(c.y + dy, 0, y2 - MIN_CROP);
+  if (h.includes('s')) y2 = clamp(y2 + dy, y1 + MIN_CROP, S.vh);
+  setCrop({ x: x1, y: y1, w: x2 - x1, h: y2 - y1 });
+});
+const endCropDrag = () => { cdrag = null; };
+cropLayer.addEventListener('pointerup', endCropDrag);
+cropLayer.addEventListener('pointercancel', endCropDrag);
+for (const id of ['cX', 'cY', 'cW', 'cH']) {
+  $(id).addEventListener('input', () => {
+    if (!S.vw) return;
+    const v = (k) => $(k).value === '' ? NaN : $(k).valueAsNumber;
+    const [x, y, w, h] = ['cX', 'cY', 'cW', 'cH'].map(v);
+    if ([x, y, w, h].every(Number.isNaN)) return setCrop(null);
+    setCrop({ x: Number.isNaN(x) ? 0 : x, y: Number.isNaN(y) ? 0 : y, w: Number.isNaN(w) ? S.vw : w, h: Number.isNaN(h) ? S.vh : h });
+  });
+  $(id).addEventListener('change', () => drawCrop());
+}
+$('cropSet').addEventListener('click', () => { if (!S.vw) return; if (!S.crop) setCrop(defaultCrop()); else drawCrop(); setView(S.view === 'image' ? 'both' : S.view); });
+$('cropReset').addEventListener('click', () => setCrop(null));
+$('cropQuick').addEventListener('click', () => { if (S.busy) return; if (S.crop) setCrop(null); else setCrop(defaultCrop()); });
+if (window.ResizeObserver) new ResizeObserver(() => { if (S.crop) drawCrop(); }).observe(player);
+window.addEventListener('resize', () => { if (S.crop) drawCrop(); });
+
+/* ---------- Oberfläche ---------- */
+function setView(view, save = true) {
+  S.view = view;
+  $('stage').dataset.view = view;
+  $('videoBox').hidden = view === 'image';
+  $('imageBox').hidden = view === 'video';
+  document.querySelectorAll('#viewSwitch [role=radio]').forEach((b) => {
+    const on = b.dataset.view === view;
+    b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1;
+  });
+  if (view === 'image') player.pause();
+  if (save) { try { localStorage.setItem('stroboscope-view', view); } catch { /* optional */ } }
+  drawCrop();
+}
+function setStatus(text, ready = false) { $('statusText').textContent = text; $('statusDot').classList.toggle('on', ready); }
+
+function updateRangeSummary() {
+  const lo = $('tFrom').value === '' ? 0 : $('tFrom').valueAsNumber;
+  const hi = $('tTo').value === '' ? NaN : $('tTo').valueAsNumber;
+  const wholeStart = !(lo > 0);
+  const wholeEnd = !Number.isFinite(hi) || (S.duration > 0 && hi >= S.duration - 0.005);
+  $('cropSummary').textContent = S.crop ? `${S.crop.w} × ${S.crop.h} px` : 'Ganzes Bild';
+  $('cropQuick').textContent = S.crop ? 'Ausschnitt entfernen' : 'Ausschnitt wählen';
+  $('rangeSummary').textContent = !S.duration || (wholeStart && wholeEnd)
+    ? 'Gesamtes Video'
+    : `${nf(Number.isFinite(lo) ? lo : 0)} – ${Number.isFinite(hi) ? nf(hi) : 'Ende'} s`;
+}
+function refresh() {
+  const hz = currentHz();
+  $('hzBox').hidden = S.mode === 'step'; $('stepBox').hidden = S.mode !== 'step';
+  $('stepInfo').textContent = S.fps ? `Schrittweite ${$('stepN').value || '?'}: jedes ${$('stepN').valueAsNumber > 1 ? `${$('stepN').value}. ` : ''}Videobild. Das Video hat ${nf(S.fps, Number.isInteger(S.fps) ? 0 : 2)} Bilder pro Sekunde, das ergibt ${Number.isFinite(hz) ? nf(hz, 2) : '–'} Hz.` : 'Die Bildrate des Videos wird noch ermittelt oder ist nicht verfügbar.';
+  document.querySelectorAll('[data-step]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.step) === $('stepN').valueAsNumber)));
+  $('dt').textContent = Number.isFinite(hz) && hz > 0 ? `${nf(1 / hz, hz > 20 ? 3 : 2)} s` : '–';
+  document.querySelectorAll('[data-hz]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.hz) === $('hz').valueAsNumber)));
+  updateRangeSummary();
+  $('go').disabled = true;
+  if (S.busy) return;
+  const hint = (t) => { $('goHint').textContent = t; };
+  if (S.loading) return hint('Video wird geladen …');
+  if (!S.url) return hint('Wähle ein Video, um loszulegen.');
+  try {
+    const c = readSettings();
+    $('go').disabled = false;
+    hint(`${pictures(c.times.length)} · ${nf(c.to - c.from)} Sekunden ausgewählt`);
+  } catch (err) { hint(err.message); }
+}
+function syncTools() {
+  $('measureBtn').disabled = !S.result || S.busy;
+  $('saveBtn').disabled = !S.result || S.busy;
+}
+function setBusy(on) {
+  S.busy = on;
+  $('busy').hidden = !on; $('stop').hidden = !on;
+  document.querySelectorAll('#panel input, #panel button').forEach((el) => { if (el.id !== 'stop') el.disabled = on; });
+  $('goLabel').textContent = on ? 'Bild wird erstellt …' : 'Stroboskopbild erstellen';
+  refresh(); syncTools();
+}
+
+function clearVideo() {
+  S.loadToken++;
+  if (S.loadJob) S.loadJob.abort();
+  if (S.job) S.job.abort();
+  player.pause(); player.removeAttribute('src'); player.load();
+  if (S.url) URL.revokeObjectURL(S.url);
+  Object.assign(S, { url: null, duration: 0, name: '', loading: false, result: null, a: 0, b: 0, crop: null });
+  S.fps = 0; $('cropQuick').hidden = true; $('fpsBadge').hidden = true; drawCrop();
+  $('fileInput').value = '';
+  $('fileCard').hidden = true; $('dropZone').hidden = false;
+  $('videoEmpty').hidden = false; $('trim').hidden = true;
+  $('demo').hidden = false; $('canvasBox').hidden = true;
+  $('tFrom').value = '0'; $('tTo').value = ''; $('tTo').placeholder = 'Ende';
+  $('videoInfo').textContent = ''; $('imageInfo').textContent = '';
+  $('reelEmpty').hidden = false; $('reelStrip').hidden = true; $('reelStrip').replaceChildren();
+  $('filmCount').textContent = 'GLEICHE ZEITABSTÄNDE';
+  resetMeasuring(); showError(); syncTools();
+  setStatus('Dein nächstes Experiment beginnt hier.');
+  refresh();
+}
+
+async function loadFile(file) {
+  if (S.busy) return;
+  clearVideo();
+  const token = ++S.loadToken;
+  S.loading = true; S.name = file.name; S.url = URL.createObjectURL(file);
+  S.loadJob = new AbortController();
+  player.src = S.url;
+  $('dropZone').hidden = true; $('fileCard').hidden = false;
+  $('fileName').textContent = file.name; $('fileMeta').textContent = 'Video wird gelesen …';
+  $('videoEmpty').hidden = true;
+  refresh();
+  try {
+    await whenReady(player, S.loadJob.signal);
+    if (token !== S.loadToken) return;
+    if (!Number.isFinite(player.duration) || player.duration <= 0 || !player.videoWidth) throw new Error('Das Video hat keine lesbare Dauer. Verwende eine vollständig gespeicherte Videodatei.');
+    S.duration = player.duration; S.vw = player.videoWidth; S.vh = player.videoHeight; S.loading = false;
+    const info = `${nf(S.duration)} s · ${S.vw} × ${S.vh} px`;
+    $('fileMeta').textContent = info; $('videoInfo').textContent = info;
+    $('tFrom').max = String(S.duration); $('tTo').max = String(S.duration); $('tTo').placeholder = nf(S.duration);
+    const d = fit(S.vw, S.vh, LIMITS.side), cv = $('out');
+    cv.width = d.w; cv.height = d.h;
+    cv.getContext('2d').drawImage(player, 0, 0, d.w, d.h);
+    $('demo').hidden = true; $('canvasBox').hidden = false;
+    startTrim(); $('cropQuick').hidden = false; drawCrop();
+    detectFps(token);
+    setStatus('Video bereit. Jetzt die Bewegung festhalten.');
+    refresh();
+  } catch (err) {
+    if (token !== S.loadToken || err.name === 'AbortError') return;
+    clearVideo(); showError(err.message);
+  }
+}
+
+function buildReel(r) {
+  $('reelEmpty').hidden = true;
+  const strip = $('reelStrip');
+  strip.hidden = false; strip.replaceChildren();
+  r.thumbs.forEach((f, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'frame';
+    b.setAttribute('aria-label', `Einzelbild ${i + 1} bei ${nf(f.rel, 3)} Sekunden im Video ansehen`);
+    const img = document.createElement('img'); img.src = f.src; img.alt = `Position bei t = ${nf(f.rel)} s`; img.loading = 'lazy';
+    const cap = document.createElement('span'); cap.textContent = `${nf(f.rel)} s`;
+    const idx = document.createElement('small'); idx.textContent = String(i + 1).padStart(2, '0'); cap.append(idx);
+    b.append(img, cap);
+    b.addEventListener('click', () => {
+      if (S.view === 'image') setView('video');
+      player.pause(); player.currentTime = f.t;
+      document.querySelectorAll('.frame.picked').forEach((x) => x.classList.remove('picked'));
+      b.classList.add('picked');
+      if (S.view === 'both') $('videoBox').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
+    strip.append(b);
+  });
+  $('filmCount').textContent = `${pictures(r.times.length).toUpperCase()} · Δt = ${nf(1 / r.hz, r.hz > 20 ? 3 : 2)} s`;
+}
+
+async function create() {
+  if (S.busy || S.loading || !S.url) return;
+  let cfg;
+  try { cfg = readSettings(); } catch (err) { showError(err.message); return; }
+  showError();
+  S.job = new AbortController();
+  if (S.view === 'video') setView('image');
+  player.pause();
+  $('busyBar').value = 0; $('busyPct').textContent = '0 %'; $('busyText').textContent = 'Hintergrund wird ermittelt.';
+  setBusy(true);
+  try {
+    const r = await capture({
+      ...cfg, url: S.url, signal: S.job.signal,
+      onProgress: (pct, text) => { $('busyBar').value = pct; $('busyPct').textContent = `${Math.round(pct)} %`; $('busyText').textContent = text; },
+    });
+    S.result = r; resetMeasuring();
+    $('busyBar').value = 100; $('busyPct').textContent = '100 %';
+    $('demo').hidden = true; $('canvasBox').hidden = false;
+    paintOut(); buildReel(r);
+    $('imageInfo').textContent = `${r.w} × ${r.h} px · ${pictures(r.times.length)}${r.crop ? ' · Ausschnitt' : ''}`;
+    setStatus(`${pictures(r.times.length)} zusammengeführt · ${r.w} × ${r.h} px`, true);
+    if (r.times.length < 2) toast('Nur ein Bild ausgewählt. Erhöhe die Frequenz für mehrere Positionen.');
+    else if (r.moving < 20) toast('Kaum Bewegung erkannt. Probiere eine empfindlichere Bewegungserkennung.');
+    else toast('Dein Stroboskopbild ist fertig.');
+  } catch (err) {
+    if (err.name === 'AbortError') toast('Verarbeitung abgebrochen.');
+    else showError(err.message || 'Das Bild konnte nicht erstellt werden. Bitte versuche es mit einem kürzeren Video.');
+  } finally { S.job = null; setBusy(false); }
+}
+
+function savePng() {
+  if (!S.result || S.busy) return;
+  $('out').toBlob(async (blob) => {
+    if (!blob) { showError('Das PNG konnte nicht gespeichert werden.'); return; }
+    const base = S.name.replace(/\.[^.]+$/, '').replace(/[^\p{L}\p{N}_-]+/gu, '-').slice(0, 80) || 'video';
+    const filename = `${base}-stroboscope-v${VERSION}-${S.result.hz}Hz.png`;
+    let saver = null;
+    try { saver = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch { saver = null; }
+    if (saver) {
+      try { await saver.save({ filename, data: blob }); toast('Dein Stroboskopbild wird als PNG gespeichert.'); }
+      catch (err) { if (!err || err.code !== 'declined') toast('Das Speichern war hier nicht möglich.'); }
+      return;
+    }
+    const href = URL.createObjectURL(blob), a = document.createElement('a');
+    a.href = href; a.download = filename;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(href), 30000);
+    toast('Dein Stroboskopbild wird als PNG gespeichert.');
+  }, 'image/png');
+}
+
+/* ---------- Ereignisse ---------- */
+$('noJs').hidden = true;
+
+$('dropZone').addEventListener('click', () => $('fileInput').click());
+$('fileInput').addEventListener('change', (e) => { if (e.target.files[0]) loadFile(e.target.files[0]); });
+['dragenter', 'dragover'].forEach((n) => $('dropZone').addEventListener(n, (e) => { e.preventDefault(); if (!S.busy) $('dropZone').classList.add('over'); }));
+['dragleave', 'drop'].forEach((n) => $('dropZone').addEventListener(n, (e) => { e.preventDefault(); $('dropZone').classList.remove('over'); }));
+$('dropZone').addEventListener('drop', (e) => { const f = e.dataTransfer.files[0]; if (f && !S.busy) loadFile(f); });
+window.addEventListener('dragover', (e) => e.preventDefault());
+window.addEventListener('drop', (e) => e.preventDefault());
+$('removeBtn').addEventListener('click', clearVideo);
+
+for (const id of ['hz', 'stepN', 'tFrom', 'tTo', 'sense']) {
+  $(id).addEventListener('input', () => {
+    showError();
+    if (id === 'tFrom' || id === 'tTo') trimFromFields();
+    refresh();
+  });
+}
+$('sense').addEventListener('input', () => {
+  const v = $('sense').valueAsNumber;
+  $('senseText').textContent = v < 18 ? 'Empfindlich' : v > 40 ? 'Weniger Rauschen' : 'Normal';
+});
+document.querySelectorAll('[data-hz]').forEach((b) => b.addEventListener('click', () => { $('hz').value = b.dataset.hz; showError(); refresh(); }));
+const nudgeHz = (dir) => {
+  const cur = $('hz').valueAsNumber;
+  const base = Number.isFinite(cur) ? cur : 10;
+  const step = dir > 0 ? (base < 1 ? 0.1 : 1) : (base <= 1 ? 0.1 : 1);
+  $('hz').value = String(clamp(Math.round((base + dir * step) * 10) / 10, 0.1, 120));
+  showError(); refresh();
+};
+const nudgeStep = (d) => { const cur = $('stepN').valueAsNumber; $('stepN').value = String(clamp((Number.isFinite(cur) ? Math.round(cur) : 1) + d, 1, 1000)); showError(); refresh(); };
+$('stepMinus').addEventListener('click', () => nudgeStep(-1));
+$('stepPlus').addEventListener('click', () => nudgeStep(1));
+document.querySelectorAll('[data-step]').forEach((b) => b.addEventListener('click', () => { $('stepN').value = b.dataset.step; showError(); refresh(); }));
+// Zwei Auswahlschalter: Zeitabstand über Frequenz oder Schrittweite, Spuren hell oder dunkel
+function bindSwitch(id, attr, apply) {
+  const items = [...document.querySelectorAll(`#${id} [role=radio]`)];
+  const set = (v) => items.forEach((b) => { const on = b.dataset[attr] === v; b.setAttribute('aria-checked', String(on)); b.tabIndex = on ? 0 : -1; });
+  items.forEach((b) => b.addEventListener('click', () => { set(b.dataset[attr]); apply(b.dataset[attr]); }));
+  $(id).addEventListener('keydown', (e) => {
+    const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+    if (!dir) return;
+    e.preventDefault();
+    const i = items.findIndex((b) => b.getAttribute('aria-checked') === 'true');
+    const next = items[(i + dir + items.length) % items.length];
+    set(next.dataset[attr]); apply(next.dataset[attr]); next.focus();
+  });
+}
+bindSwitch('modeSwitch', 'mode', (v) => { S.mode = v; showError(); refresh(); });
+bindSwitch('traceSwitch', 'trace', (v) => { S.trace = v; });
+$('hzMinus').addEventListener('click', () => nudgeHz(-1));
+$('hzPlus').addEventListener('click', () => nudgeHz(1));
+for (const id of ['optTimeline', 'optGrid']) $(id).addEventListener('change', paintOut);
+$('go').addEventListener('click', create);
+$('stop').addEventListener('click', () => S.job && S.job.abort());
+$('saveBtn').addEventListener('click', savePng);
+
+// Ansicht: Beides oder je ein Bereich. Pfeiltasten wechseln nur, wenn der Schalter selbst den Fokus hat.
+const radios = [...document.querySelectorAll('#viewSwitch [role=radio]')];
+radios.forEach((b) => b.addEventListener('click', () => setView(b.dataset.view)));
+$('viewSwitch').addEventListener('keydown', (e) => {
+  const dir = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+  if (!dir) return;
+  e.preventDefault();
+  const i = radios.findIndex((b) => b.dataset.view === S.view);
+  const next = radios[(i + dir + radios.length) % radios.length];
+  setView(next.dataset.view); next.focus();
+});
+
+$('fullBtn').addEventListener('click', async () => {
+  const stage = $('stage');
+  if (document.fullscreenElement) { await document.exitFullscreen(); return; }
+  if (!stage.requestFullscreen) { toast('Vergrößere die Ansicht mit der Zoomfunktion deines Browsers.'); return; }
+  try { await stage.requestFullscreen(); } catch { toast('Der Browser konnte die Vollbildansicht nicht öffnen.'); }
+});
+document.addEventListener('fullscreenchange', () => $('stage').classList.toggle('is-full', document.fullscreenElement === $('stage')));
+
+$('helpBtn').addEventListener('click', () => $('helpDlg').showModal());
+$('hzHelp').addEventListener('click', () => $('helpDlg').showModal());
+document.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => b.closest('dialog').close()));
+document.querySelectorAll('dialog').forEach((d) => d.addEventListener('click', (e) => {
+  if (e.target !== d) return;
+  const r = d.getBoundingClientRect();
+  if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close();
+}));
+
+/* Messfenster */
+$('measureBtn').addEventListener('click', () => { if (!S.result) return; $('measureDlg').showModal(); renderMeasureUI(); });
+const mc = $('mCanvas');
+let press = null;
+const imagePoint = (e) => {
+  const r = mc.getBoundingClientRect();
+  return { x: (e.clientX - r.left) * mc.width / r.width, y: (e.clientY - r.top) * mc.height / r.height };
+};
+mc.addEventListener('pointerdown', (e) => {
+  if (!S.result) return;
+  const p = imagePoint(e);
+  const hit = [...S.measures].reverse().find((m) => {
+    const b = m.visible && m.showLabel && m.boxes && m.boxes.m;
+    return b && p.x >= b.x && p.x <= b.x + b.w && p.y >= b.y && p.y <= b.y + b.h;
+  });
+  press = { hit, p, cx: e.clientX, cy: e.clientY, moved: false, dx: hit ? p.x - hit.boxes.m.x : 0, dy: hit ? p.y - hit.boxes.m.y : 0 };
+  mc.setPointerCapture(e.pointerId);
+});
+mc.addEventListener('pointermove', (e) => {
+  if (!press || !press.hit) return;
+  if (!press.moved && Math.hypot(e.clientX - press.cx, e.clientY - press.cy) < 4) return;
+  press.moved = true;
+  const p = imagePoint(e), m = press.hit, box = m.boxes.m;
+  m.labelPos = { x: clamp(p.x - press.dx, 0, S.result.w - box.w), y: clamp(p.y - press.dy, 0, S.result.h - box.h) };
+  drawMeasureCanvas();
+});
+mc.addEventListener('pointerup', (e) => {
+  if (!press) return;
+  const cur = press; press = null;
+  try { mc.releasePointerCapture(e.pointerId); } catch { /* bereits frei */ }
+  if (cur.hit) {
+    if (!cur.moved) { S.pending = []; S.picked = cur.hit.id; }
+    renderMeasureUI(); paintOut();
+    return;
+  }
+  placePoint(cur.p);
+});
+mc.addEventListener('pointercancel', () => { press = null; });
+
+$('mColor').addEventListener('input', (e) => { const m = pickedMeasure(); if (!m) return; m.color = e.target.value; renderMeasureUI(); paintOut(); });
+$('mWidth').addEventListener('input', (e) => { const m = pickedMeasure(); if (!m) return; m.width = e.target.valueAsNumber; $('mWidthVal').textContent = nf(m.width, 1); drawMeasureCanvas(); paintOut(); });
+$('mShowLabel').addEventListener('change', (e) => { const m = pickedMeasure(); if (!m) return; m.showLabel = e.target.checked; renderMeasureUI(); paintOut(); });
+$('mFont').addEventListener('change', (e) => { const m = pickedMeasure(); if (!m) return; m.font = e.target.value; drawMeasureCanvas(); paintOut(); });
+$('mBg').addEventListener('input', (e) => { const m = pickedMeasure(); if (!m) return; m.bg = e.target.value; drawMeasureCanvas(); paintOut(); });
+$('mBgAlpha').addEventListener('input', (e) => { const m = pickedMeasure(); if (!m) return; m.bgAlpha = e.target.valueAsNumber / 100; $('mBgAlphaVal').textContent = `${e.target.value} %`; drawMeasureCanvas(); paintOut(); });
+$('mResetLabel').addEventListener('click', () => { const m = pickedMeasure(); if (!m) return; m.labelPos = null; renderMeasureUI(); paintOut(); });
+$('mNew').addEventListener('click', () => { S.pending = []; S.picked = null; renderMeasureUI(); });
+$('mClear').addEventListener('click', () => { S.pending = []; S.measures = []; S.picked = null; renderMeasureUI(); paintOut(); });
+$('mKnown').addEventListener('input', () => {
+  const d = $('mKnown').valueAsNumber;
+  $('mCalibrate').disabled = !pickedMeasure() || !(d > 0) || !Number.isFinite(d);
+});
+$('mCalibrate').addEventListener('click', () => {
+  const d = $('mKnown').valueAsNumber, ref = pickedMeasure();
+  if (!ref || !(d > 0) || !Number.isFinite(d)) return;
+  S.scale = d / ref.px; S.scaleRef = ref.id; S.pending = [];
+  renderMeasureUI(); paintOut();
+  toast('Maßstab gespeichert. Alle Strecken werden in cm angezeigt.');
+});
+
+window.addEventListener('resize', () => { paintOut(); if ($('measureDlg').open) drawMeasureCanvas(); });
+window.addEventListener('pagehide', () => {
+  if (S.job) S.job.abort();
+  if (S.loadJob) S.loadJob.abort();
+  if (S.url) URL.revokeObjectURL(S.url);
+});
+
+/* Start */
+try { const saved = localStorage.getItem('stroboscope-view'); if (saved === 'both' || saved === 'video' || saved === 'image') S.view = saved; } catch { /* optional */ }
+setView(S.view, false);
+refresh();
+})();
+</script></body></html>
